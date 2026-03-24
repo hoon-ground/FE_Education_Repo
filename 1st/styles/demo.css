@@ -1,0 +1,80 @@
+.stage-btn.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.demo-phone {
+  width: 100%;
+  max-width: 340px;
+  border: 10px solid #111827;
+  border-radius: 2rem;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -25px rgb(0 0 0 / 0.35);
+}
+
+.demo-screen {
+  min-height: 420px;
+  background: #f9fafb;
+  padding: 1rem;
+}
+
+.demo-card.basic {
+  border: 1px solid #d1d5db;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: white;
+}
+
+.demo-card.styled {
+  border: none;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
+  box-shadow: 0 16px 30px -20px rgba(37, 99, 235, 0.45);
+}
+
+.demo-avatar {
+  width: 100%;
+  height: 180px;
+  border-radius: 0.9rem;
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #e0e7ff);
+  margin-bottom: 1rem;
+}
+
+.demo-button {
+  width: 100%;
+  border-radius: 9999px;
+  padding: 0.85rem 1rem;
+  font-weight: 700;
+  margin-top: 0.75rem;
+}
+
+.demo-button.basic {
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #111827;
+}
+
+.demo-button.styled {
+  border: none;
+  background: #2563eb;
+  color: white;
+}
+
+.dom-node {
+  border: 1px solid #cbd5e1;
+  background: white;
+  border-radius: 0.9rem;
+  padding: 0.9rem 1rem;
+  text-align: center;
+  box-shadow: 0 10px 25px -20px rgb(0 0 0 / 0.2);
+}
+
+.connector {
+  width: 2px;
+  height: 28px;
+  background: #93c5fd;
+  margin: 0.35rem auto;
+}

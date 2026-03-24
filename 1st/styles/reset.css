@@ -1,0 +1,34 @@
+:root {
+  --fe-main: #2563eb;
+  --fe-soft: #eff6ff;
+  --be-main: #ea580c;
+  --be-soft: #fff7ed;
+  --ok-main: #16a34a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Pretendard", sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+code,
+pre {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
+
+@media (max-width: 768px) {
+  .slide {
+    padding: 5.5rem 1rem 4rem;
+  }
+
+  .insta-photo {
+    height: 220px;
+  }
+}

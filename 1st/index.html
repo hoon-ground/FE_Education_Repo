@@ -1,825 +1,25 @@
 <!doctype html>
-<html lang="ko" class="scroll-smooth">
+
+<html class="scroll-smooth" lang="ko">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>웹 개발에 대한 이해와 프론트엔드</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link
-      rel="stylesheet"
       as="style"
-      crossorigin
+      crossorigin=""
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
     />
-    <style>
-      :root {
-        --fe-main: #2563eb;
-        --fe-soft: #eff6ff;
-        --be-main: #ea580c;
-        --be-soft: #fff7ed;
-        --ok-main: #16a34a;
-      }
 
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Pretendard", sans-serif;
-        background-color: #f9fafb;
-        color: #111827;
-      }
-
-      .slide {
-        min-height: 100vh;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 6rem 2rem;
-        border-bottom: 1px solid #e5e7eb;
-      }
-
-      .slide-content {
-        width: 100%;
-        max-width: 1160px;
-        text-align: center;
-      }
-
-      .nav-link.active {
-        color: #2563eb;
-        font-weight: 700;
-      }
-
-      code,
-      pre {
-        font-family:
-          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-      }
-
-      .info-card {
-        background-color: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 1rem;
-        padding: 1.5rem;
-        text-align: left;
-        box-shadow: 0 10px 25px -15px rgb(0 0 0 / 0.2);
-      }
-
-      .info-card:hover {
-        transform: translateY(-4px);
-        transition: transform 0.2s ease;
-      }
-
-      .browser-window {
-        background: white;
-        border: 1px solid #d1d5db;
-        border-radius: 1.5rem;
-        overflow: hidden;
-        box-shadow: 0 20px 50px -25px rgb(0 0 0 / 0.2);
-      }
-
-      .browser-bar {
-        background: #f3f4f6;
-        border-bottom: 1px solid #e5e7eb;
-        padding: 0.85rem 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .browser-dot {
-        width: 0.75rem;
-        height: 0.75rem;
-        border-radius: 9999px;
-      }
-
-      .code-window {
-        background: #111827;
-        color: #e5e7eb;
-        border-radius: 1rem;
-        overflow: hidden;
-        border: 1px solid #1f2937;
-      }
-
-      .code-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.75rem 1rem;
-        background: #1f2937;
-        border-bottom: 1px solid #374151;
-        font-size: 0.85rem;
-      }
-
-      .code-body {
-        padding: 1rem;
-        text-align: left;
-        font-size: 0.85rem;
-        line-height: 1.7;
-        white-space: pre-wrap;
-        min-height: 175px;
-      }
-
-      .summary-chip {
-        border: 1px solid #dbeafe;
-        background: #eff6ff;
-        color: #1d4ed8;
-        border-radius: 9999px;
-        padding: 0.5rem 0.9rem;
-        font-size: 0.9rem;
-        font-weight: 700;
-      }
-
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-
-      .stage-btn.active {
-        background: #2563eb;
-        color: white;
-        border-color: #2563eb;
-      }
-
-      .demo-phone {
-        width: 100%;
-        max-width: 340px;
-        border: 10px solid #111827;
-        border-radius: 2rem;
-        background: white;
-        overflow: hidden;
-        box-shadow: 0 20px 40px -25px rgb(0 0 0 / 0.35);
-      }
-
-      .demo-screen {
-        min-height: 420px;
-        background: #f9fafb;
-        padding: 1rem;
-      }
-
-      .demo-card.basic {
-        border: 1px solid #d1d5db;
-        padding: 1rem;
-        border-radius: 0.75rem;
-        background: white;
-      }
-
-      .demo-card.styled {
-        border: none;
-        padding: 1.25rem;
-        border-radius: 1rem;
-        background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
-        box-shadow: 0 16px 30px -20px rgba(37, 99, 235, 0.45);
-      }
-
-      .demo-avatar {
-        width: 100%;
-        height: 180px;
-        border-radius: 0.9rem;
-        background: linear-gradient(135deg, #dbeafe, #bfdbfe, #e0e7ff);
-        margin-bottom: 1rem;
-      }
-
-      .demo-button {
-        width: 100%;
-        border-radius: 9999px;
-        padding: 0.85rem 1rem;
-        font-weight: 700;
-        margin-top: 0.75rem;
-      }
-
-      .demo-button.basic {
-        border: 1px solid #d1d5db;
-        background: white;
-        color: #111827;
-      }
-
-      .demo-button.styled {
-        border: none;
-        background: #2563eb;
-        color: white;
-      }
-
-      .dom-node {
-        border: 1px solid #cbd5e1;
-        background: white;
-        border-radius: 0.9rem;
-        padding: 0.9rem 1rem;
-        text-align: center;
-        box-shadow: 0 10px 25px -20px rgb(0 0 0 / 0.2);
-      }
-
-      .connector {
-        width: 2px;
-        height: 28px;
-        background: #93c5fd;
-        margin: 0.35rem auto;
-      }
-
-      .role-board {
-        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-        border: 1px solid #e5e7eb;
-        border-radius: 1.5rem;
-        padding: 1.5rem;
-        box-shadow: 0 24px 50px -32px rgba(15, 23, 42, 0.35);
-      }
-
-      .insta-phone {
-        width: 100%;
-        max-width: 360px;
-        margin: 0 auto;
-        background: #fff;
-        border: 10px solid #111827;
-        border-radius: 2.1rem;
-        overflow: hidden;
-        box-shadow: 0 28px 45px -32px rgba(0, 0, 0, 0.45);
-      }
-
-      .insta-topbar {
-        height: 26px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #fff;
-        border-bottom: 1px solid #f3f4f6;
-      }
-
-      .insta-notch {
-        width: 88px;
-        height: 6px;
-        border-radius: 9999px;
-        background: #111827;
-      }
-
-      .insta-card {
-        padding: 0.95rem 0.95rem 1rem;
-        background: white;
-      }
-
-      .insta-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 0.85rem;
-      }
-
-      .insta-user {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .insta-avatar {
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 9999px;
-        padding: 2px;
-        background: linear-gradient(135deg, #f97316, #ec4899, #8b5cf6);
-      }
-
-      .insta-avatar-inner {
-        width: 100%;
-        height: 100%;
-        border-radius: 9999px;
-        background: linear-gradient(135deg, #fde68a, #fbcfe8, #bfdbfe);
-        border: 2px solid #fff;
-      }
-
-      .insta-photo {
-        position: relative;
-        height: 280px;
-        border-radius: 1rem;
-        overflow: hidden;
-        background:
-          radial-gradient(
-            circle at 25% 25%,
-            rgba(255, 255, 255, 0.75),
-            transparent 18%
-          ),
-          radial-gradient(
-            circle at 80% 20%,
-            rgba(255, 255, 255, 0.35),
-            transparent 16%
-          ),
-          linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 40%, #f9a8d4 100%);
-      }
-
-      .insta-photo::before {
-        content: "";
-        position: absolute;
-        inset: auto 12% 22% auto;
-        width: 120px;
-        height: 120px;
-        border-radius: 9999px;
-        background: rgba(255, 255, 255, 0.22);
-        filter: blur(2px);
-      }
-
-      .insta-photo::after {
-        content: "";
-        position: absolute;
-        left: 10%;
-        bottom: 12%;
-        width: 150px;
-        height: 90px;
-        border-radius: 9999px 9999px 0 9999px;
-        background: rgba(255, 255, 255, 0.28);
-        transform: rotate(-10deg);
-      }
-
-      .big-heart {
-        position: absolute;
-        inset: 0;
-        display: grid;
-        place-items: center;
-        font-size: 5rem;
-        color: white;
-        text-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-        opacity: 0;
-        transform: scale(0.4);
-        pointer-events: none;
-      }
-
-      .big-heart.show {
-        animation: heart-pop 0.9s ease;
-      }
-
-      @keyframes heart-pop {
-        0% {
-          opacity: 0;
-          transform: scale(0.4);
-        }
-        18% {
-          opacity: 1;
-          transform: scale(1.15);
-        }
-        58% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        100% {
-          opacity: 0;
-          transform: scale(1.35);
-        }
-      }
-
-      .insta-actions {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 0.85rem;
-      }
-
-      .action-left {
-        display: flex;
-        align-items: center;
-      }
-
-      .icon-btn,
-      .action-btn {
-        width: 2.25rem;
-        height: 2.25rem;
-        border: none;
-        background: transparent !important;
-        padding: 0;
-        display: inline-grid;
-        place-items: center;
-        cursor: pointer;
-        line-height: 1;
-        color: #111827;
-        appearance: none;
-        transition:
-          transform 0.16s ease,
-          color 0.16s ease,
-          opacity 0.16s ease;
-      }
-
-      .icon-btn:hover,
-      .action-btn:hover {
-        opacity: 0.85;
-      }
-
-      .heart-btn:active,
-      .action-btn:active {
-        transform: scale(0.92);
-      }
-
-      .heart-btn.liked {
-        color: #ef4444;
-        transform: scale(1.06);
-      }
-
-      .action-icon {
-        width: 1.65rem;
-        height: 1.65rem;
-        stroke-width: 2;
-        color: currentColor;
-      }
-
-      .heart-btn.liked .action-icon {
-        fill: currentColor;
-      }
-
-      .flip-x {
-        transform: scaleX(-1);
-      }
-
-      .rotate-send {
-        transform: rotate(20deg);
-      }
-
-      .rotate-repeat {
-        transform: rotate(90deg);
-      }
-
-      .mini-status {
-        border-radius: 9999px;
-        padding: 0.5rem 0.8rem;
-        font-size: 0.8rem;
-        font-weight: 700;
-      }
-
-      .mini-status.fe {
-        background: #eff6ff;
-        color: #1d4ed8;
-      }
-
-      .mini-status.be {
-        background: #fff7ed;
-        color: #c2410c;
-      }
-
-      .legend-pill {
-        border-radius: 9999px;
-        padding: 0.45rem 0.8rem;
-        font-size: 0.85rem;
-        font-weight: 700;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-      }
-
-      .legend-pill.fe {
-        background: #eff6ff;
-        color: #1d4ed8;
-        border: 1px solid #bfdbfe;
-      }
-
-      .legend-pill.be {
-        background: #fff7ed;
-        color: #c2410c;
-        border: 1px solid #fed7aa;
-      }
-
-      .process-grid {
-        display: grid;
-        gap: 0.9rem;
-      }
-
-      .process-step {
-        border-radius: 1.1rem;
-        padding: 1rem 1rem 1rem 1.05rem;
-        border: 1px solid #e5e7eb;
-        background: white;
-        transition: all 0.25s ease;
-        position: relative;
-        text-align: left;
-      }
-
-      .process-step.fe {
-        border-color: #bfdbfe;
-        background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
-      }
-
-      .process-step.be {
-        border-color: #fed7aa;
-        background: linear-gradient(180deg, #ffffff 0%, #fff7ed 100%);
-      }
-
-      .process-step.active {
-        transform: translateY(-4px) scale(1.01);
-        box-shadow: 0 18px 30px -25px rgba(37, 99, 235, 0.55);
-      }
-
-      .process-step.be.active {
-        box-shadow: 0 18px 30px -25px rgba(234, 88, 12, 0.55);
-      }
-
-      .step-badge {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 9999px;
-        display: inline-grid;
-        place-items: center;
-        font-weight: 800;
-        margin-right: 0.65rem;
-        flex-shrink: 0;
-      }
-
-      .step-badge.fe {
-        background: #dbeafe;
-        color: #1d4ed8;
-      }
-
-      .step-badge.be {
-        background: #fed7aa;
-        color: #c2410c;
-      }
-
-      .network-lane {
-        position: relative;
-        height: 86px;
-        border-radius: 1.25rem;
-        border: 1px dashed #d1d5db;
-        background: linear-gradient(
-          90deg,
-          #eff6ff 0%,
-          #eff6ff 50%,
-          #fff7ed 50%,
-          #fff7ed 100%
-        );
-        overflow: hidden;
-      }
-
-      .lane-label {
-        position: absolute;
-        top: 10px;
-        font-size: 0.75rem;
-        font-weight: 800;
-        color: #6b7280;
-      }
-
-      .lane-label.left {
-        left: 16px;
-      }
-      .lane-label.center {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .lane-label.right {
-        right: 16px;
-        text-align: right;
-      }
-
-      .lane-line {
-        position: absolute;
-        left: 16px;
-        right: 16px;
-        top: 50%;
-        height: 2px;
-        background: linear-gradient(90deg, #93c5fd 0%, #fdba74 100%);
-      }
-
-      .packet {
-        position: absolute;
-        top: calc(50% - 18px);
-        left: 18px;
-        min-width: 120px;
-        padding: 0.45rem 0.75rem;
-        border-radius: 9999px;
-        font-size: 0.82rem;
-        font-weight: 800;
-        box-shadow: 0 12px 18px -16px rgba(15, 23, 42, 0.55);
-        opacity: 0;
-        --travel-x: 0px;
-      }
-
-      .packet.request {
-        background: #dbeafe;
-        color: #1d4ed8;
-      }
-
-      .packet.response {
-        background: #dcfce7;
-        color: #166534;
-        left: auto;
-        right: 18px;
-      }
-
-      .packet.move-right {
-        animation: move-right 1.2s ease forwards;
-      }
-
-      .packet.move-left {
-        animation: move-left 1.2s ease forwards;
-      }
-
-      @keyframes move-right {
-        0% {
-          opacity: 0;
-          transform: translateX(0);
-        }
-        8% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 1;
-          transform: translateX(var(--travel-x));
-        }
-      }
-
-      @keyframes move-left {
-        0% {
-          opacity: 0;
-          transform: translateX(0);
-        }
-        8% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 1;
-          transform: translateX(calc(-1 * var(--travel-x)));
-        }
-      }
-
-      .role-log {
-        min-height: 148px;
-        background: #0f172a;
-        color: #e2e8f0;
-        border-radius: 1rem;
-        padding: 1rem;
-        border: 1px solid #1e293b;
-        text-align: left;
-        font-size: 0.9rem;
-      }
-
-      .role-log-line {
-        display: flex;
-        gap: 0.7rem;
-        align-items: flex-start;
-        margin-bottom: 0.55rem;
-      }
-
-      .role-log-line .dot {
-        width: 0.5rem;
-        height: 0.5rem;
-        margin-top: 0.45rem;
-        border-radius: 9999px;
-        flex-shrink: 0;
-      }
-
-      .role-log-line.fe .dot {
-        background: #60a5fa;
-      }
-      .role-log-line.be .dot {
-        background: #fb923c;
-      }
-      .role-log-line.ok .dot {
-        background: #4ade80;
-      }
-
-      .api-panel {
-        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-        border: 1px solid #e5e7eb;
-        border-radius: 1.5rem;
-        box-shadow: 0 24px 50px -32px rgba(15, 23, 42, 0.35);
-      }
-
-      .api-control-btn {
-        border-radius: 9999px;
-        padding: 0.8rem 1rem;
-        font-weight: 800;
-        border: 1px solid #d1d5db;
-        background: white;
-        transition: all 0.18s ease;
-      }
-
-      .api-control-btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .api-control-btn.get {
-        border-color: #86efac;
-        background: #f0fdf4;
-        color: #166534;
-      }
-
-      .api-control-btn.post {
-        border-color: #93c5fd;
-        background: #eff6ff;
-        color: #1d4ed8;
-      }
-
-      .api-chip {
-        border-radius: 9999px;
-        padding: 0.35rem 0.7rem;
-        font-size: 0.78rem;
-        font-weight: 800;
-        display: inline-block;
-      }
-
-      .api-chip.get {
-        background: #dcfce7;
-        color: #166534;
-      }
-
-      .api-chip.post {
-        background: #dbeafe;
-        color: #1d4ed8;
-      }
-
-      .api-chip.wait {
-        background: #fef3c7;
-        color: #92400e;
-      }
-
-      .api-step {
-        border-radius: 1rem;
-        padding: 0.9rem;
-        border: 1px solid #e5e7eb;
-        background: white;
-        text-align: left;
-        transition: all 0.22s ease;
-      }
-
-      .api-step.active {
-        border-color: #34d399;
-        background: #ecfdf5;
-        transform: translateY(-3px);
-      }
-
-      .json-box {
-        min-height: 250px;
-        max-width: 100%;
-        white-space: pre-wrap;
-        overflow-wrap: anywhere;
-        word-break: break-word;
-        overflow-x: auto;
-      }
-
-      .api-status {
-        border-radius: 9999px;
-        padding: 0.5rem 0.8rem;
-        font-size: 0.8rem;
-        font-weight: 800;
-      }
-
-      .api-status.idle {
-        background: #f3f4f6;
-        color: #4b5563;
-      }
-
-      .api-status.loading {
-        background: #fef3c7;
-        color: #92400e;
-      }
-
-      .api-status.success {
-        background: #dcfce7;
-        color: #166534;
-      }
-
-      .api-status.error {
-        background: #fee2e2;
-        color: #b91c1c;
-      }
-
-      .spin {
-        display: inline-block;
-        width: 0.95rem;
-        height: 0.95rem;
-        border: 2px solid currentColor;
-        border-right-color: transparent;
-        border-radius: 9999px;
-        animation: spin 0.8s linear infinite;
-        vertical-align: -2px;
-      }
-
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .flow-card-dark {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 1.25rem;
-        padding: 1.1rem;
-        text-align: left;
-      }
-
-      .flow-card-dark:hover {
-        transform: translateY(-3px);
-        transition: transform 0.2s ease;
-      }
-
-      @media (max-width: 768px) {
-        .slide {
-          padding: 5.5rem 1rem 4rem;
-        }
-        .insta-photo {
-          height: 220px;
-        }
-      }
-    </style>
+    <link href="styles/reset.css" rel="stylesheet" />
+    <link href="styles/layout.css" rel="stylesheet" />
+    <link href="styles/demo.css" rel="stylesheet" />
+    <link href="styles/fe-role.css" rel="stylesheet" />
+    <link href="styles/api.css" rel="stylesheet" />
+    <link href="styles/web-flow.css" rel="stylesheet" />
   </head>
   <body class="w-full">
     <header
@@ -831,59 +31,58 @@
         >
           <li>
             <a
-              href="#intro"
               class="nav-link text-gray-500 hover:text-blue-600 transition"
+              href="#intro"
               >시작</a
             >
           </li>
           <li>
             <a
-              href="#fe-role"
               class="nav-link text-gray-500 hover:text-blue-600 transition"
+              href="#fe-role"
               >FE 역할</a
             >
           </li>
           <li>
             <a
-              href="#api"
               class="nav-link text-gray-500 hover:text-blue-600 transition"
+              href="#api"
               >API</a
             >
           </li>
           <li>
             <a
-              href="#web-flow"
               class="nav-link text-gray-500 hover:text-blue-600 transition"
+              href="#web-flow"
               >웹 동작</a
             >
           </li>
           <li>
             <a
-              href="#html-css-js"
               class="nav-link text-gray-500 hover:text-blue-600 transition"
+              href="#html-css-js"
               >HTML/CSS/JS</a
             >
           </li>
           <li>
             <a
-              href="#dom-bridge"
               class="nav-link text-gray-500 hover:text-blue-600 transition"
+              href="#dom-bridge"
               >DOM</a
             >
           </li>
           <li>
             <a
-              href="#outro"
               class="nav-link text-gray-500 hover:text-blue-600 transition"
+              href="#outro"
               >마무리</a
             >
           </li>
         </ul>
       </nav>
     </header>
-
     <main>
-      <section id="intro" class="slide bg-white">
+      <section class="slide bg-white" id="intro">
         <div class="slide-content">
           <span
             class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-800 text-sm font-bold mb-4"
@@ -897,7 +96,6 @@
           <p class="text-xl text-gray-500 mb-10 font-medium">
             “브라우저에서 클릭을 했을 때, 어떤 일이 일어날까?”
           </p>
-
           <div class="grid md:grid-cols-2 gap-6 text-left mb-10">
             <div class="info-card">
               <h3 class="font-bold text-xl mb-4 text-gray-900">오늘의 목표</h3>
@@ -933,7 +131,6 @@
               </div>
             </div>
           </div>
-
           <div class="flex flex-wrap justify-center gap-3">
             <span class="summary-chip">사용자는 무엇을 보나?</span>
             <span class="summary-chip">브라우저는 무엇을 하나?</span>
@@ -945,8 +142,7 @@
           </p>
         </div>
       </section>
-
-      <section id="fe-role" class="slide bg-gray-50">
+      <section class="slide bg-gray-50" id="fe-role">
         <div class="slide-content">
           <div class="text-center mb-10">
             <span
@@ -960,7 +156,6 @@
               좋아요를 눌렀을 때 일어나는 일에 대해 알아보자.
             </p>
           </div>
-
           <div class="role-board">
             <div class="grid lg:grid-cols-2 gap-8 items-start">
               <div class="text-left">
@@ -981,61 +176,58 @@
                       </div>
                       <div class="text-lg text-gray-400">⋯</div>
                     </div>
-
                     <div class="insta-photo">
                       <div class="big-heart" id="big-heart">❤</div>
                     </div>
-
                     <div class="insta-actions">
                       <div class="action-left">
                         <button
+                          aria-label="좋아요"
+                          class="icon-btn heart-btn"
                           id="insta-like-btn"
                           type="button"
-                          class="icon-btn heart-btn"
-                          aria-label="좋아요"
                         >
-                          <i data-lucide="heart" class="action-icon"></i>
+                          <i class="action-icon" data-lucide="heart"></i>
                         </button>
                         <button
-                          type="button"
-                          class="action-btn"
                           aria-label="댓글"
+                          class="action-btn"
+                          type="button"
                         >
                           <i
-                            data-lucide="message-circle"
                             class="action-icon flip-x"
+                            data-lucide="message-circle"
                           ></i>
                         </button>
                         <button
-                          type="button"
-                          class="action-btn"
                           aria-label="반복"
+                          class="action-btn"
+                          type="button"
                         >
                           <i
-                            data-lucide="repeat-2"
                             class="action-icon rotate-repeat"
+                            data-lucide="repeat-2"
                           ></i>
                         </button>
                         <button
-                          type="button"
-                          class="action-btn"
                           aria-label="공유"
+                          class="action-btn"
+                          type="button"
                         >
                           <i
-                            data-lucide="send"
                             class="action-icon rotate-send"
+                            data-lucide="send"
                           ></i>
                         </button>
                       </div>
                       <button
-                        type="button"
-                        class="action-btn"
                         aria-label="북마크"
+                        class="action-btn"
+                        type="button"
                       >
-                        <i data-lucide="bookmark" class="action-icon"></i>
+                        <i class="action-icon" data-lucide="bookmark"></i>
                       </button>
                     </div>
-
                     <div
                       class="mt-3 text-sm text-gray-900 font-bold"
                       id="insta-like-count"
@@ -1050,21 +242,20 @@
                       <div class="text-xs text-gray-500">
                         지금 상태:
                         <span
-                          id="insta-visual-state"
                           class="font-bold text-gray-700"
+                          id="insta-visual-state"
                           >대기 중</span
                         >
                       </div>
                       <button
-                        id="insta-reset-btn"
                         class="text-xs font-bold px-3 py-2 rounded-full bg-gray-100 hover:bg-gray-200 transition"
+                        id="insta-reset-btn"
                       >
                         다시 보기
                       </button>
                     </div>
                   </div>
                 </div>
-
                 <div
                   class="mt-5 flex flex-wrap gap-2 justify-center lg:justify-start"
                 >
@@ -1076,7 +267,6 @@
                   >
                 </div>
               </div>
-
               <div class="text-left">
                 <div class="grid md:grid-cols-2 gap-3 mb-4">
                   <div class="process-step fe" data-step="1">
@@ -1093,7 +283,6 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="process-step fe" data-step="2">
                     <div class="flex items-start">
                       <div class="step-badge fe">2</div>
@@ -1109,7 +298,6 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="process-step be" data-step="3">
                     <div class="flex items-start">
                       <div class="step-badge be">3</div>
@@ -1124,7 +312,6 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="process-step be" data-step="4">
                     <div class="flex items-start">
                       <div class="step-badge be">4</div>
@@ -1140,7 +327,6 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="process-step fe md:col-span-2" data-step="5">
                     <div class="flex items-start">
                       <div class="step-badge fe">5</div>
@@ -1158,19 +344,17 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="network-lane mb-4">
                   <div class="lane-label left">사용자 / 브라우저</div>
                   <div class="lane-label right">백엔드 / DB</div>
                   <div class="lane-line"></div>
-                  <div id="request-packet" class="packet request">
+                  <div class="packet request" id="request-packet">
                     요청: POST /like
                   </div>
-                  <div id="response-packet" class="packet response">
+                  <div class="packet response" id="response-packet">
                     응답: liked=true
                   </div>
                 </div>
-
                 <div class="role-log" id="role-log">
                   <div class="role-log-line fe">
                     <div class="dot"></div>
@@ -1183,7 +367,6 @@
               </div>
             </div>
           </div>
-
           <div class="mt-10 grid md:grid-cols-2 gap-6 text-left">
             <div class="info-card border-l-4 border-l-blue-500">
               <h3 class="font-bold text-xl mb-3">FE가 하는 일</h3>
@@ -1205,8 +388,7 @@
           </div>
         </div>
       </section>
-
-      <section id="api" class="slide bg-white">
+      <section class="slide bg-white" id="api">
         <div class="slide-content">
           <div class="text-center mb-10">
             <span
@@ -1220,7 +402,6 @@
               BE와 협업을 할때 API 명세를 정의한다.
             </p>
           </div>
-
           <div class="grid md:grid-cols-3 gap-6 text-left mb-8">
             <div class="info-card">
               <h3 class="font-bold text-lg mb-3">API란?</h3>
@@ -1251,7 +432,6 @@
               </p>
             </div>
           </div>
-
           <div class="api-panel p-6 md:p-8">
             <div class="grid lg:grid-cols-12 gap-6 items-start">
               <div class="lg:col-span-4 text-left">
@@ -1260,22 +440,20 @@
                   버튼을 누르면 브라우저가 공개 API로 실제 요청을 보냄. 아래
                   요청과 응답이 즉시 바뀐다.
                 </p>
-
                 <div class="space-y-3">
                   <button
-                    id="api-get-btn"
                     class="api-control-btn get w-full text-left"
+                    id="api-get-btn"
                   >
                     GET 예시 - 게시물 1번 가져오기
                   </button>
                   <button
-                    id="api-post-btn"
                     class="api-control-btn post w-full text-left"
+                    id="api-post-btn"
                   >
                     POST 예시 - 좋아요 요청 보내기
                   </button>
                 </div>
-
                 <div class="mt-5 space-y-3">
                   <div class="api-step" data-api-step="1">
                     <div class="font-bold mb-1">1. 프론트엔드가 요청 준비</div>
@@ -1296,7 +474,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="mt-5 info-card bg-gray-50">
                   <h4 class="font-bold mb-2">핵심</h4>
                   <p class="text-sm text-gray-600 leading-relaxed">
@@ -1308,7 +485,6 @@
                   </p>
                 </div>
               </div>
-
               <div class="lg:col-span-8">
                 <div class="browser-window text-left">
                   <div class="browser-bar">
@@ -1321,9 +497,8 @@
                     >
                       아직 요청 전
                     </div>
-                    <div id="api-status" class="api-status idle">대기 중</div>
+                    <div class="api-status idle" id="api-status">대기 중</div>
                   </div>
-
                   <div class="grid md:grid-cols-2 gap-0">
                     <div
                       class="p-5 border-b md:border-b-0 md:border-r border-gray-200 bg-gray-50"
@@ -1332,13 +507,13 @@
                         <h3 class="font-bold text-lg text-gray-900">
                           요청(Request)
                         </h3>
-                        <span id="request-method-chip" class="api-chip wait"
+                        <span class="api-chip wait" id="request-method-chip"
                           >WAIT</span
                         >
                       </div>
                       <pre
-                        id="api-request-box"
                         class="json-box text-sm leading-7 text-gray-700 bg-white rounded-xl p-4 border border-gray-200"
+                        id="api-request-box"
                       >
 버튼을 누르면
 요청 정보가 여기에 표시됩니다.</pre
@@ -1349,33 +524,31 @@
                         <h3 class="font-bold text-lg text-gray-900">
                           응답(Response)
                         </h3>
-                        <span id="response-method-chip" class="api-chip wait"
+                        <span class="api-chip wait" id="response-method-chip"
                           >WAIT</span
                         >
                       </div>
                       <pre
-                        id="api-response-box"
                         class="json-box text-sm leading-7 text-gray-700 bg-gray-50 rounded-xl p-4 border border-gray-200"
+                        id="api-response-box"
                       >
 아직 응답이 없습니다.</pre
                       >
                     </div>
                   </div>
                 </div>
-
                 <div class="mt-5 grid md:grid-cols-2 gap-5 text-left">
                   <div class="code-window">
                     <div class="code-header">
                       <span>fetch 예시</span>
                       <span class="text-emerald-300">브라우저 코드</span>
                     </div>
-                    <pre id="api-code-box" class="code-body">
+                    <pre class="code-body" id="api-code-box">
 fetch("https://jsonplaceholder.typicode.com/posts/1")
-  .then((response) => response.json())
-  .then((data) => console.log(data));</pre
+  .then((response) =&gt; response.json())
+  .then((data) =&gt; console.log(data));</pre
                     >
                   </div>
-
                   <div class="info-card bg-emerald-50 border-emerald-100">
                     <h3 class="font-bold text-lg mb-3">요약</h3>
                     <ul class="space-y-2 text-gray-700 leading-relaxed">
@@ -1393,7 +566,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
               </div>
             </div>
           </div>
-
           <div
             class="mt-8 info-card max-w-5xl mx-auto border-l-4 border-l-emerald-500"
           >
@@ -1405,8 +577,7 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
           </div>
         </div>
       </section>
-
-      <section id="web-flow" class="slide bg-gray-900 text-white">
+      <section class="slide bg-gray-900 text-white" id="web-flow">
         <div class="slide-content">
           <div class="text-center mb-10">
             <span
@@ -1421,7 +592,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
               NAVER에 접속해볼까? www.naver.com을 입력했을 때 발생하는 일
             </p>
           </div>
-
           <div class="grid md:grid-cols-7 gap-4 items-stretch text-left">
             <div class="flow-card-dark">
               <div class="text-blue-300 font-extrabold text-2xl mb-3">1</div>
@@ -1480,7 +650,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
               </p>
             </div>
           </div>
-
           <div class="mt-12 grid md:grid-cols-2 gap-6 text-left">
             <div class="info-card bg-white/95">
               <h3 class="font-bold text-xl mb-3 text-gray-900">
@@ -1507,8 +676,7 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
           </div>
         </div>
       </section>
-
-      <section id="html-css-js" class="slide bg-gray-50">
+      <section class="slide bg-gray-50" id="html-css-js">
         <div class="slide-content w-full max-w-6xl px-4">
           <div class="text-center mb-8">
             <span
@@ -1523,7 +691,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
               이 부분은 VS Code를 통해 눈으로 직접 알아보자.
             </p>
           </div>
-
           <div class="flex flex-wrap justify-center gap-3 mb-8">
             <button
               class="stage-btn active px-5 py-2.5 rounded-full border border-gray-300 bg-white font-bold"
@@ -1544,7 +711,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
               3단계 : JS 추가
             </button>
           </div>
-
           <div class="grid lg:grid-cols-12 gap-6 items-start">
             <div class="lg:col-span-7 space-y-4">
               <div class="grid md:grid-cols-3 gap-4">
@@ -1553,33 +719,31 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
                     <span>index.html</span>
                     <span class="text-blue-300">구조</span>
                   </div>
-                  <pre id="html-code" class="code-body"></pre>
+                  <pre class="code-body" id="html-code"></pre>
                 </div>
                 <div class="code-window">
                   <div class="code-header">
                     <span>style.css</span>
                     <span class="text-pink-300">스타일</span>
                   </div>
-                  <pre id="css-code" class="code-body"></pre>
+                  <pre class="code-body" id="css-code"></pre>
                 </div>
                 <div class="code-window">
                   <div class="code-header">
                     <span>script.js</span>
                     <span class="text-yellow-300">동작</span>
                   </div>
-                  <pre id="js-code" class="code-body"></pre>
+                  <pre class="code-body" id="js-code"></pre>
                 </div>
               </div>
-
               <div class="info-card">
-                <h3 id="stage-title" class="font-bold text-xl mb-3"></h3>
+                <h3 class="font-bold text-xl mb-3" id="stage-title"></h3>
                 <p
-                  id="stage-description"
                   class="text-gray-700 leading-relaxed"
+                  id="stage-description"
                 ></p>
               </div>
             </div>
-
             <div class="lg:col-span-5">
               <div class="browser-window">
                 <div class="browser-bar">
@@ -1600,7 +764,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
               </div>
             </div>
           </div>
-
           <div class="mt-10 grid md:grid-cols-3 gap-5 text-left">
             <div class="info-card border-l-4 border-l-blue-500">
               <h3 class="font-bold text-lg mb-2">HTML</h3>
@@ -1625,8 +788,7 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
           </div>
         </div>
       </section>
-
-      <section id="dom-bridge" class="slide bg-white">
+      <section class="slide bg-white" id="dom-bridge">
         <div class="slide-content">
           <div class="text-center mb-10">
             <span
@@ -1642,7 +804,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
               실제로 움직이게 만드는 중심이 JavaScript.
             </p>
           </div>
-
           <div class="grid md:grid-cols-3 gap-5 text-left mb-8">
             <div class="info-card border-l-4 border-l-blue-500">
               <h3 class="font-bold text-lg mb-2">HTML</h3>
@@ -1666,7 +827,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
               </p>
             </div>
           </div>
-
           <div class="grid lg:grid-cols-2 gap-8 text-left mb-10">
             <div class="info-card">
               <h3 class="font-bold text-xl mb-4">
@@ -1684,7 +844,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
                 JavaScript.
               </p>
             </div>
-
             <div class="info-card bg-amber-50 border-amber-100">
               <h3 class="font-bold text-xl mb-4">JavaScript의 DOM</h3>
               <p class="text-gray-700 leading-relaxed mb-4">
@@ -1699,7 +858,6 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
               </p>
             </div>
           </div>
-
           <div class="grid md:grid-cols-2 gap-6 text-left">
             <div class="code-window">
               <div class="code-header">
@@ -1716,7 +874,6 @@ JS    → 화면의 동작
 DOM이라는 방식으로 다룬다.</pre
               >
             </div>
-
             <div class="info-card border-l-4 border-l-amber-500">
               <h3 class="font-bold text-xl mb-3">DOM을 알아보자</h3>
               <p class="text-gray-700 leading-relaxed">
@@ -1730,8 +887,7 @@ DOM이라는 방식으로 다룬다.</pre
           </div>
         </div>
       </section>
-
-      <section id="outro" class="slide bg-gray-50">
+      <section class="slide bg-gray-50" id="outro">
         <div class="slide-content">
           <span
             class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-800 text-sm font-bold mb-4"
@@ -1781,451 +937,6 @@ DOM이라는 방식으로 다룬다.</pre
       </section>
     </main>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const sections = document.querySelectorAll("section");
-        window.lucide?.createIcons();
-        const navLinks = document.querySelectorAll(".nav-link");
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                navLinks.forEach((link) => {
-                  link.classList.remove("active");
-                  if (
-                    link.getAttribute("href").substring(1) === entry.target.id
-                  ) {
-                    link.classList.add("active");
-                  }
-                });
-              }
-            });
-          },
-          { rootMargin: "-50% 0px -50% 0px" },
-        );
-
-        sections.forEach((section) => observer.observe(section));
-
-        // HTML / CSS / JS demo
-        const htmlCode = document.getElementById("html-code");
-        const cssCode = document.getElementById("css-code");
-        const jsCode = document.getElementById("js-code");
-        const stageTitle = document.getElementById("stage-title");
-        const stageDescription = document.getElementById("stage-description");
-        const demoPreview = document.getElementById("demo-preview");
-        const stageButtons = document.querySelectorAll(".stage-btn");
-
-        const stages = {
-          1: {
-            title: "1단계: HTML만 있으면 구조는 보인다",
-            description:
-              "HTML만 작성해도 제목, 문장, 버튼 같은 구조는 브라우저에 나타납니다. 다만 아직 꾸밈도 없고, 클릭해도 특별한 동작은 없습니다.",
-            html: `<section class="post">\n  <h3>인스타그램 게시물</h3>\n  <p>좋아요 120개</p>\n  <button>좋아요</button>\n</section>`,
-            css: `/* 아직 스타일 없음 */`,
-            js: `// 아직 동작 없음`,
-            preview: `
-              <div class="demo-card basic">
-                <div class="demo-avatar"></div>
-                <h3 class="text-lg font-bold mb-2">인스타그램 게시물</h3>
-                <p class="text-sm text-gray-600">좋아요 120개</p>
-                <button class="demo-button basic" disabled>좋아요</button>
-              </div>
-            `,
-          },
-          2: {
-            title: "2단계: CSS를 더하면 보기 좋은 화면이 된다",
-            description:
-              "같은 HTML 구조라도 CSS를 더하면 색상, 여백, 배치가 생기면서 서비스처럼 보이기 시작합니다. 즉 CSS는 '무엇을 보여줄지'가 아니라 '어떻게 보일지'를 담당합니다.",
-            html: `<section class="post">\n  <h3>인스타그램 게시물</h3>\n  <p>좋아요 120개</p>\n  <button>좋아요</button>\n</section>`,
-            css: `.post {\n  padding: 20px;\n  border-radius: 16px;\n  background: #eff6ff;\n}\n\nbutton {\n  background: #2563eb;\n  color: white;\n  border: none;\n}`,
-            js: `// 아직 동작 없음`,
-            preview: `
-              <div class="demo-card styled">
-                <div class="demo-avatar"></div>
-                <h3 class="text-lg font-bold mb-2">인스타그램 게시물</h3>
-                <p class="text-sm text-gray-600">좋아요 120개</p>
-                <button class="demo-button styled" disabled>좋아요</button>
-              </div>
-            `,
-          },
-          3: {
-            title: "3단계: JavaScript를 더하면 사용자의 행동에 반응한다",
-            description:
-              "이제 버튼 클릭이라는 이벤트를 받아서 숫자를 바꾸고 문구를 바꿉니다. 여기서부터 '정적인 문서'가 아니라 '상호작용하는 서비스'가 됩니다.",
-            html: `<section class="post">\n  <h3 id="postTitle">인스타그램 게시물</h3>\n  <p id="likeText">좋아요 120개</p>\n  <button id="likeBtn">좋아요</button>\n</section>`,
-            css: `.post {\n  padding: 20px;\n  border-radius: 16px;\n  background: #eff6ff;\n}\n\nbutton {\n  background: #2563eb;\n  color: white;\n}`,
-            js: `const btn = document.querySelector("#likeBtn");\nconst text = document.querySelector("#likeText");\n\nbtn.addEventListener("click", () => {\n  text.textContent = "좋아요 121개";\n});`,
-            preview: `
-              <div class="demo-card styled">
-                <div class="demo-avatar"></div>
-                <h3 class="text-lg font-bold mb-2" id="demo-title">인스타그램 게시물</h3>
-                <p class="text-sm text-gray-600" id="demo-like-text">좋아요 120개</p>
-                <p class="text-xs text-blue-700 font-semibold mt-2" id="demo-status">버튼을 눌러보세요.</p>
-                <button class="demo-button styled" id="demo-like-btn">좋아요</button>
-              </div>
-            `,
-          },
-        };
-
-        function bindDemoEvents(stage) {
-          if (stage !== 3) return;
-          const button = document.getElementById("demo-like-btn");
-          const text = document.getElementById("demo-like-text");
-          const status = document.getElementById("demo-status");
-          let liked = false;
-
-          if (button && text && status) {
-            button.addEventListener("click", () => {
-              liked = !liked;
-              text.textContent = liked ? "좋아요 121개" : "좋아요 120개";
-              status.textContent = liked
-                ? "JavaScript가 DOM의 텍스트를 바꿨습니다."
-                : "다시 누르면 원래 상태로 돌아갑니다.";
-              button.textContent = liked ? "좋아요 취소" : "좋아요";
-            });
-          }
-        }
-
-        function renderStage(stage) {
-          const current = stages[stage];
-          htmlCode.textContent = current.html;
-          cssCode.textContent = current.css;
-          jsCode.textContent = current.js;
-          stageTitle.textContent = current.title;
-          stageDescription.textContent = current.description;
-          demoPreview.innerHTML = current.preview;
-
-          stageButtons.forEach((btn) => {
-            btn.classList.remove("active");
-            if (Number(btn.dataset.stage) === stage) {
-              btn.classList.add("active");
-            }
-          });
-
-          bindDemoEvents(stage);
-        }
-
-        stageButtons.forEach((button) => {
-          button.addEventListener("click", () => {
-            renderStage(Number(button.dataset.stage));
-          });
-        });
-
-        renderStage(1);
-
-        // FE role demo
-        const likeBtn = document.getElementById("insta-like-btn");
-        const resetBtn = document.getElementById("insta-reset-btn");
-        const likeCount = document.getElementById("insta-like-count");
-        const visualState = document.getElementById("insta-visual-state");
-        const bigHeart = document.getElementById("big-heart");
-        const requestPacket = document.getElementById("request-packet");
-        const responsePacket = document.getElementById("response-packet");
-        const networkLane = document.querySelector(".network-lane");
-        const processSteps = document.querySelectorAll(".process-step");
-        const roleLog = document.getElementById("role-log");
-
-        let liked = false;
-        let animationTimers = [];
-        let animating = false;
-
-        function clearRoleTimers() {
-          animationTimers.forEach((timer) => clearTimeout(timer));
-          animationTimers = [];
-        }
-
-        function setRoleLog(lines) {
-          roleLog.innerHTML = lines
-            .map(
-              (line) => `
-                <div class="role-log-line ${line.type}">
-                  <div class="dot"></div>
-                  <div>${line.text}</div>
-                </div>
-              `,
-            )
-            .join("");
-        }
-
-        function activateRoleStep(stepNumber) {
-          processSteps.forEach((step) => {
-            step.classList.toggle(
-              "active",
-              Number(step.dataset.step) === stepNumber,
-            );
-          });
-        }
-
-        function updatePacketTravel() {
-          const laneWidth = networkLane?.clientWidth ?? 0;
-          if (!laneWidth) return;
-
-          const requestTravel = Math.max(
-            0,
-            laneWidth - requestPacket.offsetWidth - 36,
-          );
-          const responseTravel = Math.max(
-            0,
-            laneWidth - responsePacket.offsetWidth - 36,
-          );
-
-          requestPacket.style.setProperty("--travel-x", `${requestTravel}px`);
-          responsePacket.style.setProperty("--travel-x", `${responseTravel}px`);
-        }
-
-        function resetPackets() {
-          requestPacket.className = "packet request";
-          responsePacket.className = "packet response";
-          updatePacketTravel();
-        }
-
-        function resetRoleDemo() {
-          clearRoleTimers();
-          animating = false;
-          liked = false;
-          likeBtn.classList.remove("liked");
-          likeCount.textContent = "좋아요 120개";
-          visualState.textContent = "대기 중";
-          bigHeart.classList.remove("show");
-          processSteps.forEach((step) => step.classList.remove("active"));
-          resetPackets();
-          setRoleLog([
-            {
-              type: "fe",
-              text: "대기 중입니다. 하트 버튼을 누르면 단계가 순서대로 진행됩니다.",
-            },
-          ]);
-        }
-
-        function playLikeFlow() {
-          if (animating || liked) return;
-          animating = true;
-
-          const schedule = (delay, fn) => {
-            const timer = setTimeout(fn, delay);
-            animationTimers.push(timer);
-          };
-
-          setRoleLog([
-            { type: "fe", text: "사용자가 하트 버튼을 클릭했습니다." },
-          ]);
-
-          schedule(0, () => {
-            activateRoleStep(1);
-            visualState.textContent = "클릭 감지";
-          });
-
-          schedule(900, () => {
-            activateRoleStep(2);
-            visualState.textContent = "요청 전송 중";
-            resetPackets();
-            requestPacket.classList.add("move-right");
-            setRoleLog([
-              { type: "fe", text: "1) FE가 클릭 이벤트를 감지했습니다." },
-              {
-                type: "fe",
-                text: "2) FE가 POST /like 요청을 준비해 서버로 보냅니다.",
-              },
-            ]);
-          });
-
-          schedule(2200, () => {
-            activateRoleStep(3);
-            visualState.textContent = "백엔드 처리 중";
-            setRoleLog([
-              { type: "fe", text: "1) FE가 클릭 이벤트를 감지했습니다." },
-              {
-                type: "fe",
-                text: "2) FE가 POST /like 요청을 서버로 보냈습니다.",
-              },
-              {
-                type: "be",
-                text: "3) 백엔드가 사용자/게시물 정보를 확인하고 DB에 좋아요를 반영합니다.",
-              },
-            ]);
-          });
-
-          schedule(3400, () => {
-            activateRoleStep(4);
-            visualState.textContent = "응답 생성";
-            responsePacket.classList.add("move-left");
-            setRoleLog([
-              { type: "fe", text: "1) FE가 클릭 이벤트를 감지했습니다." },
-              {
-                type: "fe",
-                text: "2) FE가 POST /like 요청을 서버로 보냈습니다.",
-              },
-              { type: "be", text: "3) 백엔드가 DB 반영을 끝냈습니다." },
-              {
-                type: "be",
-                text: "4) 백엔드가 liked=true, likeCount=121 응답을 생성합니다.",
-              },
-            ]);
-          });
-
-          schedule(4700, () => {
-            activateRoleStep(5);
-            liked = true;
-            likeBtn.classList.add("liked");
-            likeCount.textContent = "좋아요 121개";
-            bigHeart.classList.remove("show");
-            void bigHeart.offsetWidth;
-            bigHeart.classList.add("show");
-            visualState.textContent = "화면 업데이트 완료";
-            setRoleLog([
-              { type: "fe", text: "1) FE가 클릭 이벤트를 감지했습니다." },
-              { type: "fe", text: "2) FE가 서버로 요청을 보냈습니다." },
-              { type: "be", text: "3) 백엔드가 DB에 반영했습니다." },
-              { type: "be", text: "4) 백엔드가 성공 응답을 보냈습니다." },
-              {
-                type: "ok",
-                text: "5) FE가 응답을 받아 하트 색과 좋아요 수를 화면에 반영했습니다.",
-              },
-            ]);
-          });
-
-          schedule(5600, () => {
-            animating = false;
-          });
-        }
-
-        likeBtn.addEventListener("click", playLikeFlow);
-        resetBtn.addEventListener("click", resetRoleDemo);
-        window.addEventListener("resize", updatePacketTravel);
-        resetRoleDemo();
-
-        // API demo
-        const apiGetBtn = document.getElementById("api-get-btn");
-        const apiPostBtn = document.getElementById("api-post-btn");
-        const apiRequestBox = document.getElementById("api-request-box");
-        const apiResponseBox = document.getElementById("api-response-box");
-        const apiCodeBox = document.getElementById("api-code-box");
-        const apiUrlBar = document.getElementById("api-url-bar");
-        const apiStatus = document.getElementById("api-status");
-        const requestMethodChip = document.getElementById(
-          "request-method-chip",
-        );
-        const responseMethodChip = document.getElementById(
-          "response-method-chip",
-        );
-        const apiSteps = document.querySelectorAll(".api-step");
-
-        function setApiStatus(mode, text) {
-          apiStatus.className = `api-status ${mode}`;
-          apiStatus.innerHTML = text;
-        }
-
-        function setApiStep(stepNumber) {
-          apiSteps.forEach((step) => {
-            step.classList.toggle(
-              "active",
-              Number(step.dataset.apiStep) <= stepNumber,
-            );
-          });
-        }
-
-        function setMethodChip(element, type) {
-          element.className = `api-chip ${type}`;
-          element.textContent = type.toUpperCase();
-        }
-
-        async function runApiDemo(type) {
-          const isGet = type === "get";
-          const url = isGet
-            ? "https://jsonplaceholder.typicode.com/posts/1"
-            : "https://jsonplaceholder.typicode.com/posts";
-
-          const requestBody = isGet
-            ? null
-            : {
-                postId: 42,
-                userId: 7,
-                action: "like",
-              };
-
-          apiUrlBar.textContent = `${isGet ? "GET" : "POST"} ${url}`;
-          setMethodChip(requestMethodChip, isGet ? "get" : "post");
-          setMethodChip(responseMethodChip, isGet ? "get" : "post");
-          setApiStatus("loading", '<span class="spin"></span> 요청 중');
-          setApiStep(1);
-
-          apiRequestBox.textContent = isGet
-            ? `{
-  "method": "GET",
-  "url": "${url}"
-}`
-            : `{
-  "method": "POST",
-  "url": "${url}",
-  "headers": {
-    "Content-Type": "application/json; charset=UTF-8"
-  },
-  "body": ${JSON.stringify(requestBody, null, 2)}
-}`;
-
-          apiResponseBox.textContent = "서버 응답을 기다리는 중...";
-
-          apiCodeBox.textContent = isGet
-            ? `fetch("${url}")
-  .then((response) => response.json())
-  .then((data) => console.log(data));`
-            : `fetch("${url}", {
-  method: "POST",
-  body: JSON.stringify({
-    postId: 42,
-    userId: 7,
-    action: "like",
-  }),
-  headers: {
-    "Content-Type": "application/json; charset=UTF-8",
-  },
-})
-  .then((response) => response.json())
-  .then((data) => console.log(data));`;
-
-          setTimeout(() => setApiStep(2), 280);
-
-          try {
-            const response = await fetch(url, {
-              method: isGet ? "GET" : "POST",
-              headers: isGet
-                ? undefined
-                : {
-                    "Content-Type": "application/json; charset=UTF-8",
-                  },
-              body: isGet ? undefined : JSON.stringify(requestBody),
-            });
-
-            const data = await response.json();
-            setApiStep(3);
-            setApiStatus("success", `성공 · ${response.status}`);
-
-            apiResponseBox.textContent = JSON.stringify(
-              {
-                status: response.status,
-                ok: response.ok,
-                data,
-              },
-              null,
-              2,
-            );
-          } catch (error) {
-            setApiStatus("error", "오류 발생");
-            apiResponseBox.textContent = JSON.stringify(
-              {
-                message: "요청에 실패했습니다.",
-                detail: error.message,
-              },
-              null,
-              2,
-            );
-          }
-        }
-
-        apiGetBtn.addEventListener("click", () => runApiDemo("get"));
-        apiPostBtn.addEventListener("click", () => runApiDemo("post"));
-      });
-    </script>
+    <script src="scripts/main.js" type="module"></script>
   </body>
 </html>
