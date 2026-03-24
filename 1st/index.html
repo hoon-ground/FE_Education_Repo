@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>웹 개발에 대한 이해와 프론트엔드</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link
       rel="stylesheet"
       as="style"
@@ -20,7 +21,9 @@
         --ok-main: #16a34a;
       }
 
-      * { box-sizing: border-box; }
+      * {
+        box-sizing: border-box;
+      }
 
       body {
         font-family: "Pretendard", sans-serif;
@@ -52,7 +55,8 @@
 
       code,
       pre {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
           "Liberation Mono", "Courier New", monospace;
       }
 
@@ -130,7 +134,9 @@
         font-weight: 700;
       }
 
-      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
       .no-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -292,8 +298,16 @@
         border-radius: 1rem;
         overflow: hidden;
         background:
-          radial-gradient(circle at 25% 25%, rgba(255,255,255,0.75), transparent 18%),
-          radial-gradient(circle at 80% 20%, rgba(255,255,255,0.35), transparent 16%),
+          radial-gradient(
+            circle at 25% 25%,
+            rgba(255, 255, 255, 0.75),
+            transparent 18%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 255, 255, 0.35),
+            transparent 16%
+          ),
           linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 40%, #f9a8d4 100%);
       }
 
@@ -316,7 +330,7 @@
         width: 150px;
         height: 90px;
         border-radius: 9999px 9999px 0 9999px;
-        background: rgba(255,255,255,0.28);
+        background: rgba(255, 255, 255, 0.28);
         transform: rotate(-10deg);
       }
 
@@ -338,10 +352,22 @@
       }
 
       @keyframes heart-pop {
-        0% { opacity: 0; transform: scale(0.4); }
-        18% { opacity: 1; transform: scale(1.15); }
-        58% { opacity: 1; transform: scale(1); }
-        100% { opacity: 0; transform: scale(1.35); }
+        0% {
+          opacity: 0;
+          transform: scale(0.4);
+        }
+        18% {
+          opacity: 1;
+          transform: scale(1.15);
+        }
+        58% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.35);
+        }
       }
 
       .insta-actions {
@@ -354,42 +380,63 @@
       .action-left {
         display: flex;
         align-items: center;
-        gap: 0.85rem;
       }
 
-      .icon-btn {
+      .icon-btn,
+      .action-btn {
+        width: 2.25rem;
+        height: 2.25rem;
         border: none;
-        background: transparent;
+        background: transparent !important;
         padding: 0;
+        display: inline-grid;
+        place-items: center;
         cursor: pointer;
         line-height: 1;
         color: #111827;
+        appearance: none;
+        transition:
+          transform 0.16s ease,
+          color 0.16s ease,
+          opacity 0.16s ease;
       }
 
-      .heart-btn {
-        width: 2.25rem;
-        height: 2.25rem;
-        display: grid;
-        place-items: center;
-        transition: transform 0.16s ease, color 0.16s ease;
-        font-size: 1.8rem;
+      .icon-btn:hover,
+      .action-btn:hover {
+        opacity: 0.85;
       }
 
-      .heart-btn:active { transform: scale(0.9); }
+      .heart-btn:active,
+      .action-btn:active {
+        transform: scale(0.92);
+      }
+
       .heart-btn.liked {
         color: #ef4444;
         transform: scale(1.06);
       }
 
-      .icon-chip {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 9999px;
-        display: grid;
-        place-items: center;
-        background: #f3f4f6;
-        color: #374151;
-        font-size: 0.95rem;
+      .action-icon {
+        width: 1.65rem;
+        height: 1.65rem;
+        stroke-width: 2;
+        color: currentColor;
+      }
+
+      .heart-btn.liked .action-icon {
+        fill: currentColor;
+      }
+
+      .flip-x {
+        transform: scaleX(-1);
+      }
+
+      .rotate-send {
+        transform: rotate(20deg);
+      }
+
+      .rotate-repeat {
+        transform: rotate(90deg);
       }
 
       .mini-status {
@@ -491,7 +538,13 @@
         height: 86px;
         border-radius: 1.25rem;
         border: 1px dashed #d1d5db;
-        background: linear-gradient(90deg, #eff6ff 0%, #eff6ff 50%, #fff7ed 50%, #fff7ed 100%);
+        background: linear-gradient(
+          90deg,
+          #eff6ff 0%,
+          #eff6ff 50%,
+          #fff7ed 50%,
+          #fff7ed 100%
+        );
         overflow: hidden;
       }
 
@@ -503,9 +556,17 @@
         color: #6b7280;
       }
 
-      .lane-label.left { left: 16px; }
-      .lane-label.center { left: 50%; transform: translateX(-50%); }
-      .lane-label.right { right: 16px; text-align: right; }
+      .lane-label.left {
+        left: 16px;
+      }
+      .lane-label.center {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .lane-label.right {
+        right: 16px;
+        text-align: right;
+      }
 
       .lane-line {
         position: absolute;
@@ -551,15 +612,31 @@
       }
 
       @keyframes move-right {
-        0% { opacity: 0; transform: translateX(0); }
-        8% { opacity: 1; }
-        100% { opacity: 1; transform: translateX(var(--travel-x)); }
+        0% {
+          opacity: 0;
+          transform: translateX(0);
+        }
+        8% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(var(--travel-x));
+        }
       }
 
       @keyframes move-left {
-        0% { opacity: 0; transform: translateX(0); }
-        8% { opacity: 1; }
-        100% { opacity: 1; transform: translateX(calc(-1 * var(--travel-x))); }
+        0% {
+          opacity: 0;
+          transform: translateX(0);
+        }
+        8% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(calc(-1 * var(--travel-x)));
+        }
       }
 
       .role-log {
@@ -588,9 +665,15 @@
         flex-shrink: 0;
       }
 
-      .role-log-line.fe .dot { background: #60a5fa; }
-      .role-log-line.be .dot { background: #fb923c; }
-      .role-log-line.ok .dot { background: #4ade80; }
+      .role-log-line.fe .dot {
+        background: #60a5fa;
+      }
+      .role-log-line.be .dot {
+        background: #fb923c;
+      }
+      .role-log-line.ok .dot {
+        background: #4ade80;
+      }
 
       .api-panel {
         background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
@@ -710,12 +793,14 @@
       }
 
       @keyframes spin {
-        to { transform: rotate(360deg); }
+        to {
+          transform: rotate(360deg);
+        }
       }
 
       .flow-card-dark {
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 1.25rem;
         padding: 1.1rem;
         text-align: left;
@@ -737,16 +822,62 @@
     </style>
   </head>
   <body class="w-full">
-    <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 right-0 z-50 border-b border-gray-200">
+    <header
+      class="bg-white/90 backdrop-blur-md fixed top-0 left-0 right-0 z-50 border-b border-gray-200"
+    >
       <nav class="max-w-7xl mx-auto px-4">
-        <ul class="flex justify-center items-center space-x-3 md:space-x-6 h-16 text-xs md:text-sm font-medium whitespace-nowrap overflow-x-auto no-scrollbar">
-          <li><a href="#intro" class="nav-link text-gray-500 hover:text-blue-600 transition">시작</a></li>
-          <li><a href="#fe-role" class="nav-link text-gray-500 hover:text-blue-600 transition">FE 역할</a></li>
-          <li><a href="#api" class="nav-link text-gray-500 hover:text-blue-600 transition">API</a></li>
-          <li><a href="#web-flow" class="nav-link text-gray-500 hover:text-blue-600 transition">웹 동작</a></li>
-          <li><a href="#html-css-js" class="nav-link text-gray-500 hover:text-blue-600 transition">HTML/CSS/JS</a></li>
-          <li><a href="#dom-bridge" class="nav-link text-gray-500 hover:text-blue-600 transition">DOM</a></li>
-          <li><a href="#outro" class="nav-link text-gray-500 hover:text-blue-600 transition">마무리</a></li>
+        <ul
+          class="flex justify-center items-center space-x-3 md:space-x-6 h-16 text-xs md:text-sm font-medium whitespace-nowrap overflow-x-auto no-scrollbar"
+        >
+          <li>
+            <a
+              href="#intro"
+              class="nav-link text-gray-500 hover:text-blue-600 transition"
+              >시작</a
+            >
+          </li>
+          <li>
+            <a
+              href="#fe-role"
+              class="nav-link text-gray-500 hover:text-blue-600 transition"
+              >FE 역할</a
+            >
+          </li>
+          <li>
+            <a
+              href="#api"
+              class="nav-link text-gray-500 hover:text-blue-600 transition"
+              >API</a
+            >
+          </li>
+          <li>
+            <a
+              href="#web-flow"
+              class="nav-link text-gray-500 hover:text-blue-600 transition"
+              >웹 동작</a
+            >
+          </li>
+          <li>
+            <a
+              href="#html-css-js"
+              class="nav-link text-gray-500 hover:text-blue-600 transition"
+              >HTML/CSS/JS</a
+            >
+          </li>
+          <li>
+            <a
+              href="#dom-bridge"
+              class="nav-link text-gray-500 hover:text-blue-600 transition"
+              >DOM</a
+            >
+          </li>
+          <li>
+            <a
+              href="#outro"
+              class="nav-link text-gray-500 hover:text-blue-600 transition"
+              >마무리</a
+            >
+          </li>
         </ul>
       </nav>
     </header>
@@ -754,8 +885,13 @@
     <main>
       <section id="intro" class="slide bg-white">
         <div class="slide-content">
-          <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-800 text-sm font-bold mb-4">1st Session</span>
-          <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-gray-900">
+          <span
+            class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-800 text-sm font-bold mb-4"
+            >1st Session</span
+          >
+          <h1
+            class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-gray-900"
+          >
             웹 개발에 대한 이해와 <span class="text-blue-600">프론트엔드</span>
           </h1>
           <p class="text-xl text-gray-500 mb-10 font-medium">
@@ -767,23 +903,33 @@
               <h3 class="font-bold text-xl mb-4 text-gray-900">오늘의 목표</h3>
               <p class="text-gray-700 leading-relaxed mb-3">
                 프론트엔드는 단순히 화면을 예쁘게 만드는 역할이 아니라,
-                <br>
-                <strong>사용자 입력을 받고, 서버와 통신하고,결과를 화면에 반영하는 역할</strong>임을 이해하기
+                <br />
+                <strong
+                  >사용자 입력을 받고, 서버와 통신하고,결과를 화면에 반영하는
+                  역할</strong
+                >임을 이해하기
               </p>
               <p class="text-gray-600 leading-relaxed">
                 단순한 설명보다는,
-                <br>
-                실제로 눌러보고, 요청을 보내보고, 응답이 돌아오는 모습을 눈으로 확인하며 진행
+                <br />
+                실제로 눌러보고, 요청을 보내보고, 응답이 돌아오는 모습을 눈으로
+                확인하며 진행
               </p>
             </div>
-            <div class="info-card bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100">
+            <div
+              class="info-card bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100"
+            >
               <h3 class="font-bold text-xl mb-4 text-gray-900">오늘의 목차</h3>
               <div class="space-y-3 text-gray-700">
                 <div><strong>1.</strong> 인스타로 알아보는 FE의 역할</div>
                 <div><strong>2.</strong> API란 무엇이고, 어떻게 주고받는가</div>
-                <div><strong>3.</strong> URL 입력부터 렌더링까지 웹 동작원리</div>
+                <div>
+                  <strong>3.</strong> URL 입력부터 렌더링까지 웹 동작원리
+                </div>
                 <div><strong>4.</strong> HTML, CSS, JavaScript의 역할 구분</div>
-                <div><strong>5.</strong> DOM을 배우기 전 알아야할 JavaScript</div>
+                <div>
+                  <strong>5.</strong> DOM을 배우기 전 알아야할 JavaScript
+                </div>
               </div>
             </div>
           </div>
@@ -803,7 +949,10 @@
       <section id="fe-role" class="slide bg-gray-50">
         <div class="slide-content">
           <div class="text-center mb-10">
-            <span class="inline-block py-1 px-3 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold mb-4">1. FE가 어떤 일을 하는가?</span>
+            <span
+              class="inline-block py-1 px-3 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold mb-4"
+              >1. FE가 어떤 일을 하는가?</span
+            >
             <h2 class="text-3xl md:text-5xl font-bold mb-4">
               인스타에서 <span class="text-blue-600">좋아요</span>를 누르면?
             </h2>
@@ -816,11 +965,15 @@
             <div class="grid lg:grid-cols-2 gap-8 items-start">
               <div class="text-left">
                 <div class="insta-phone">
-                  <div class="insta-topbar"><div class="insta-notch"></div></div>
+                  <div class="insta-topbar">
+                    <div class="insta-notch"></div>
+                  </div>
                   <div class="insta-card">
                     <div class="insta-header">
                       <div class="insta-user">
-                        <div class="insta-avatar"><div class="insta-avatar-inner"></div></div>
+                        <div class="insta-avatar">
+                          <div class="insta-avatar-inner"></div>
+                        </div>
                         <div>
                           <div class="font-bold text-sm">hoon_ground</div>
                           <div class="text-xs text-gray-500">김지훈</div>
@@ -835,30 +988,92 @@
 
                     <div class="insta-actions">
                       <div class="action-left">
-                        <button id="insta-like-btn" class="icon-btn heart-btn" aria-label="좋아요">♡</button>
-                        <div class="icon-chip">💬</div>
-                        <div class="icon-chip">✈️</div>
+                        <button
+                          id="insta-like-btn"
+                          type="button"
+                          class="icon-btn heart-btn"
+                          aria-label="좋아요"
+                        >
+                          <i data-lucide="heart" class="action-icon"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="action-btn"
+                          aria-label="댓글"
+                        >
+                          <i
+                            data-lucide="message-circle"
+                            class="action-icon flip-x"
+                          ></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="action-btn"
+                          aria-label="반복"
+                        >
+                          <i
+                            data-lucide="repeat-2"
+                            class="action-icon rotate-repeat"
+                          ></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="action-btn"
+                          aria-label="공유"
+                        >
+                          <i
+                            data-lucide="send"
+                            class="action-icon rotate-send"
+                          ></i>
+                        </button>
                       </div>
-                      <div class="icon-chip">🔖</div>
+                      <button
+                        type="button"
+                        class="action-btn"
+                        aria-label="북마크"
+                      >
+                        <i data-lucide="bookmark" class="action-icon"></i>
+                      </button>
                     </div>
 
-                    <div class="mt-3 text-sm text-gray-900 font-bold" id="insta-like-count">좋아요 120개</div>
+                    <div
+                      class="mt-3 text-sm text-gray-900 font-bold"
+                      id="insta-like-count"
+                    >
+                      좋아요 120개
+                    </div>
                     <div class="mt-2 text-sm text-gray-700">
                       <span class="font-bold">hoon_ground</span>
                       하고 후회하기
                     </div>
                     <div class="mt-3 flex items-center justify-between gap-3">
-                      <div class="text-xs text-gray-500">지금 상태: <span id="insta-visual-state" class="font-bold text-gray-700">대기 중</span></div>
-                      <button id="insta-reset-btn" class="text-xs font-bold px-3 py-2 rounded-full bg-gray-100 hover:bg-gray-200 transition">
+                      <div class="text-xs text-gray-500">
+                        지금 상태:
+                        <span
+                          id="insta-visual-state"
+                          class="font-bold text-gray-700"
+                          >대기 중</span
+                        >
+                      </div>
+                      <button
+                        id="insta-reset-btn"
+                        class="text-xs font-bold px-3 py-2 rounded-full bg-gray-100 hover:bg-gray-200 transition"
+                      >
                         다시 보기
                       </button>
                     </div>
                   </div>
                 </div>
 
-                <div class="mt-5 flex flex-wrap gap-2 justify-center lg:justify-start">
-                  <span class="legend-pill fe">🔵 FE 역할: 클릭 감지, 요청 전송, 화면 업데이트</span>
-                  <span class="legend-pill be">🟠 BE 역할: 검증, DB 반영, 응답 생성</span>
+                <div
+                  class="mt-5 flex flex-wrap gap-2 justify-center lg:justify-start"
+                >
+                  <span class="legend-pill fe"
+                    >🔵 FE 역할: 클릭 감지, 요청 전송, 화면 업데이트</span
+                  >
+                  <span class="legend-pill be"
+                    >🟠 BE 역할: 검증, DB 반영, 응답 생성</span
+                  >
                 </div>
               </div>
 
@@ -888,7 +1103,8 @@
                           <h3 class="font-bold">서버로 요청 전송</h3>
                         </div>
                         <p class="text-sm text-gray-600 leading-relaxed">
-                          “사용자 hoon_ground가 40번째 게시물에 좋아요”라는 데이터를 API로 보냄.
+                          “사용자 hoon_ground가 40번째 게시물에 좋아요”라는
+                          데이터를 API로 보냄.
                         </p>
                       </div>
                     </div>
@@ -918,7 +1134,8 @@
                           <h3 class="font-bold">응답 생성</h3>
                         </div>
                         <p class="text-sm text-gray-600 leading-relaxed">
-                          백엔드는 성공 여부와 최신 좋아요 응답 데이터로 만들어 돌려줌.
+                          백엔드는 성공 여부와 최신 좋아요 응답 데이터로 만들어
+                          돌려줌.
                         </p>
                       </div>
                     </div>
@@ -933,8 +1150,8 @@
                           <h3 class="font-bold">화면 업데이트</h3>
                         </div>
                         <p class="text-sm text-gray-600 leading-relaxed">
-                          하트 색을 바꾸고, 좋아요 개수를 120 → 121로 반영, 
-                          <br>
+                          하트 색을 바꾸고, 좋아요 개수를 120 → 121로 반영,
+                          <br />
                           사용자는 이 변화만 보게 된다.
                         </p>
                       </div>
@@ -946,14 +1163,21 @@
                   <div class="lane-label left">사용자 / 브라우저</div>
                   <div class="lane-label right">백엔드 / DB</div>
                   <div class="lane-line"></div>
-                  <div id="request-packet" class="packet request">요청: POST /like</div>
-                  <div id="response-packet" class="packet response">응답: liked=true</div>
+                  <div id="request-packet" class="packet request">
+                    요청: POST /like
+                  </div>
+                  <div id="response-packet" class="packet response">
+                    응답: liked=true
+                  </div>
                 </div>
 
                 <div class="role-log" id="role-log">
                   <div class="role-log-line fe">
                     <div class="dot"></div>
-                    <div>대기 중입니다. 하트 버튼을 누르면 단계가 순서대로 진행됩니다.</div>
+                    <div>
+                      대기 중입니다. 하트 버튼을 누르면 단계가 순서대로
+                      진행됩니다.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -964,11 +1188,15 @@
             <div class="info-card border-l-4 border-l-blue-500">
               <h3 class="font-bold text-xl mb-3">FE가 하는 일</h3>
               <p class="text-gray-700 leading-relaxed">
-                사용자의 행동을 받아 이벤트 처리, API 요청을 보내고, 응답에 맞춰 화면 상태 갱신
-                즉, FE는 <strong>사용자 경험이 끊기지 않도록 흐름을 연결하는 역할</strong>을 한다.
+                사용자의 행동을 받아 이벤트 처리, API 요청을 보내고, 응답에 맞춰
+                화면 상태 갱신 즉, FE는
+                <strong>사용자 경험이 끊기지 않도록 흐름을 연결하는 역할</strong
+                >을 한다.
               </p>
             </div>
-            <div class="info-card border-l-4 border-l-orange-500 bg-orange-50/60">
+            <div
+              class="info-card border-l-4 border-l-orange-500 bg-orange-50/60"
+            >
               <h3 class="font-bold text-xl mb-3">BE가 하는 일</h3>
               <p class="text-gray-700 leading-relaxed">
                 DB 반영, 권한 확인, 실제 데이터 저장 등은 백엔드의 역할.
@@ -981,7 +1209,10 @@
       <section id="api" class="slide bg-white">
         <div class="slide-content">
           <div class="text-center mb-10">
-            <span class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold mb-4">2. 백엔드와의 통신은 어떻게?</span>
+            <span
+              class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold mb-4"
+              >2. 백엔드와의 통신은 어떻게?</span
+            >
             <h2 class="text-3xl md:text-5xl font-bold mb-4">
               FE와 BE는 <span class="text-emerald-600">API</span>로 대화한다
             </h2>
@@ -998,7 +1229,7 @@
               </p>
               <p class="text-gray-600 leading-relaxed">
                 쉽게 말하면, 프로그램끼리 대화할 때 사용하는
-                <br>
+                <br />
                 <strong>약속된 창구, 규칙, 요청 방식</strong>
               </p>
             </div>
@@ -1006,16 +1237,17 @@
               <h3 class="font-bold text-lg mb-3">왜 필요한가?</h3>
               <p class="text-gray-600 leading-relaxed">
                 FE는 DB를 직접 건드리지 않는다.
-                <br>
-                필요한 데이터가 있으면 API 주소로 요청을 보내고,
-                BE는 정해진 형식으로 응답을 돌려준다.
+                <br />
+                필요한 데이터가 있으면 API 주소로 요청을 보내고, BE는 정해진
+                형식으로 응답을 돌려준다.
               </p>
             </div>
             <div class="info-card">
               <h3 class="font-bold text-lg mb-3">예시 API로 알아보자</h3>
               <p class="text-gray-600 leading-relaxed">
-                아래는 <strong>JSONPlaceholder</strong>라는 공개 테스트 REST API를 사용.
-                키 없이 호출할 수 있고, GET/POST 예시를 보여주기 좋다.
+                아래는 <strong>JSONPlaceholder</strong>라는 공개 테스트 REST
+                API를 사용. 키 없이 호출할 수 있고, GET/POST 예시를 보여주기
+                좋다.
               </p>
             </div>
           </div>
@@ -1025,15 +1257,21 @@
               <div class="lg:col-span-4 text-left">
                 <h3 class="text-2xl font-bold mb-3">직접 요청을 보내보자</h3>
                 <p class="text-gray-600 leading-relaxed mb-5">
-                  버튼을 누르면 브라우저가 공개 API로 실제 요청을 보냄.
-                  아래 요청과 응답이 즉시 바뀐다.
+                  버튼을 누르면 브라우저가 공개 API로 실제 요청을 보냄. 아래
+                  요청과 응답이 즉시 바뀐다.
                 </p>
 
                 <div class="space-y-3">
-                  <button id="api-get-btn" class="api-control-btn get w-full text-left">
+                  <button
+                    id="api-get-btn"
+                    class="api-control-btn get w-full text-left"
+                  >
                     GET 예시 - 게시물 1번 가져오기
                   </button>
-                  <button id="api-post-btn" class="api-control-btn post w-full text-left">
+                  <button
+                    id="api-post-btn"
+                    class="api-control-btn post w-full text-left"
+                  >
                     POST 예시 - 좋아요 요청 보내기
                   </button>
                 </div>
@@ -1041,24 +1279,32 @@
                 <div class="mt-5 space-y-3">
                   <div class="api-step" data-api-step="1">
                     <div class="font-bold mb-1">1. 프론트엔드가 요청 준비</div>
-                    <div class="text-sm text-gray-600">method, URL, body, headers를 구성</div>
+                    <div class="text-sm text-gray-600">
+                      method, URL, body, headers를 구성
+                    </div>
                   </div>
                   <div class="api-step" data-api-step="2">
                     <div class="font-bold mb-1">2. 네트워크를 통해 전송</div>
-                    <div class="text-sm text-gray-600">브라우저가 서버로 HTTP 요청을 보냄</div>
+                    <div class="text-sm text-gray-600">
+                      브라우저가 서버로 HTTP 요청을 보냄
+                    </div>
                   </div>
                   <div class="api-step" data-api-step="3">
                     <div class="font-bold mb-1">3. API 서버가 응답</div>
-                    <div class="text-sm text-gray-600">JSON 형태로 데이터를 반환</div>
+                    <div class="text-sm text-gray-600">
+                      JSON 형태로 데이터를 반환
+                    </div>
                   </div>
                 </div>
 
                 <div class="mt-5 info-card bg-gray-50">
                   <h4 class="font-bold mb-2">핵심</h4>
                   <p class="text-sm text-gray-600 leading-relaxed">
-                    “FE는 API에 요청을 보내고, 응답으로 받은 JSON을 해석해서 화면에 반영.
-                    <br>
-                    즉 데이터를 직접 저장소에서 꺼내는 게 아니라, API를 통해 간접적으로 받는 구조”
+                    “FE는 API에 요청을 보내고, 응답으로 받은 JSON을 해석해서
+                    화면에 반영.
+                    <br />
+                    즉 데이터를 직접 저장소에서 꺼내는 게 아니라, API를 통해
+                    간접적으로 받는 구조”
                   </p>
                 </div>
               </div>
@@ -1069,27 +1315,50 @@
                     <div class="browser-dot bg-red-400"></div>
                     <div class="browser-dot bg-yellow-400"></div>
                     <div class="browser-dot bg-green-400"></div>
-                    <div class="flex-1 bg-white rounded-md px-4 py-2 text-sm text-gray-500 shadow-inner" id="api-url-bar">
+                    <div
+                      class="flex-1 bg-white rounded-md px-4 py-2 text-sm text-gray-500 shadow-inner"
+                      id="api-url-bar"
+                    >
                       아직 요청 전
                     </div>
                     <div id="api-status" class="api-status idle">대기 중</div>
                   </div>
 
                   <div class="grid md:grid-cols-2 gap-0">
-                    <div class="p-5 border-b md:border-b-0 md:border-r border-gray-200 bg-gray-50">
+                    <div
+                      class="p-5 border-b md:border-b-0 md:border-r border-gray-200 bg-gray-50"
+                    >
                       <div class="flex items-center justify-between mb-3">
-                        <h3 class="font-bold text-lg text-gray-900">요청(Request)</h3>
-                        <span id="request-method-chip" class="api-chip wait">WAIT</span>
+                        <h3 class="font-bold text-lg text-gray-900">
+                          요청(Request)
+                        </h3>
+                        <span id="request-method-chip" class="api-chip wait"
+                          >WAIT</span
+                        >
                       </div>
-                      <pre id="api-request-box" class="json-box text-sm leading-7 text-gray-700 bg-white rounded-xl p-4 border border-gray-200">버튼을 누르면
-요청 정보가 여기에 표시됩니다.</pre>
+                      <pre
+                        id="api-request-box"
+                        class="json-box text-sm leading-7 text-gray-700 bg-white rounded-xl p-4 border border-gray-200"
+                      >
+버튼을 누르면
+요청 정보가 여기에 표시됩니다.</pre
+                      >
                     </div>
                     <div class="p-5 bg-white">
                       <div class="flex items-center justify-between mb-3">
-                        <h3 class="font-bold text-lg text-gray-900">응답(Response)</h3>
-                        <span id="response-method-chip" class="api-chip wait">WAIT</span>
+                        <h3 class="font-bold text-lg text-gray-900">
+                          응답(Response)
+                        </h3>
+                        <span id="response-method-chip" class="api-chip wait"
+                          >WAIT</span
+                        >
                       </div>
-                      <pre id="api-response-box" class="json-box text-sm leading-7 text-gray-700 bg-gray-50 rounded-xl p-4 border border-gray-200">아직 응답이 없습니다.</pre>
+                      <pre
+                        id="api-response-box"
+                        class="json-box text-sm leading-7 text-gray-700 bg-gray-50 rounded-xl p-4 border border-gray-200"
+                      >
+아직 응답이 없습니다.</pre
+                      >
                     </div>
                   </div>
                 </div>
@@ -1100,9 +1369,11 @@
                       <span>fetch 예시</span>
                       <span class="text-emerald-300">브라우저 코드</span>
                     </div>
-                    <pre id="api-code-box" class="code-body">fetch("https://jsonplaceholder.typicode.com/posts/1")
+                    <pre id="api-code-box" class="code-body">
+fetch("https://jsonplaceholder.typicode.com/posts/1")
   .then((response) => response.json())
-  .then((data) => console.log(data));</pre>
+  .then((data) => console.log(data));</pre
+                    >
                   </div>
 
                   <div class="info-card bg-emerald-50 border-emerald-100">
@@ -1114,7 +1385,8 @@
                       <li>• 프론트엔드는 이 JSON을 읽어 화면을 바꾼다</li>
                     </ul>
                     <p class="text-sm text-gray-500 mt-4">
-                      참고: 이 POST는 테스트 API이므로 실제 서버 DB에 영구 저장되지 않는다.
+                      참고: 이 POST는 테스트 API이므로 실제 서버 DB에 영구
+                      저장되지 않는다.
                     </p>
                   </div>
                 </div>
@@ -1122,11 +1394,13 @@
             </div>
           </div>
 
-          <div class="mt-8 info-card max-w-5xl mx-auto border-l-4 border-l-emerald-500">
+          <div
+            class="mt-8 info-card max-w-5xl mx-auto border-l-4 border-l-emerald-500"
+          >
             <h3 class="font-bold text-xl mb-3">한줄 요약</h3>
             <p class="text-gray-700 leading-relaxed">
-              API는 “프론트엔드가 백엔드 기능을 사용하기 위한 약속된 문”.
-              FE는 API에 요청을 보내고, BE는 처리 결과를 JSON 등으로 응답.
+              API는 “프론트엔드가 백엔드 기능을 사용하기 위한 약속된 문”. FE는
+              API에 요청을 보내고, BE는 처리 결과를 JSON 등으로 응답.
             </p>
           </div>
         </div>
@@ -1135,9 +1409,13 @@
       <section id="web-flow" class="slide bg-gray-900 text-white">
         <div class="slide-content">
           <div class="text-center mb-10">
-            <span class="inline-block py-1 px-3 rounded-full bg-white/10 text-blue-300 text-xs font-bold mb-4">3. 이전의 내용을 합친 웹 동작원리</span>
+            <span
+              class="inline-block py-1 px-3 rounded-full bg-white/10 text-blue-300 text-xs font-bold mb-4"
+              >3. 이전의 내용을 합친 웹 동작원리</span
+            >
             <h2 class="text-3xl md:text-5xl font-bold mb-4 leading-tight">
-              URL 입력부터 화면이 보이기까지의 <span class="text-blue-400">웹 동작원리</span>
+              URL 입력부터 화면이 보이기까지의
+              <span class="text-blue-400">웹 동작원리</span>
             </h2>
             <p class="text-gray-300 text-lg">
               NAVER에 접속해볼까? www.naver.com을 입력했을 때 발생하는 일
@@ -1187,29 +1465,42 @@
                 클릭, 입력, 스크롤 같은 이벤트가 발생한다.
               </p>
             </div>
-            <div class="flow-card-dark" style="background: rgba(59,130,246,0.14); border-color: rgba(96,165,250,0.28);">
+            <div
+              class="flow-card-dark"
+              style="
+                background: rgba(59, 130, 246, 0.14);
+                border-color: rgba(96, 165, 250, 0.28);
+              "
+            >
               <div class="text-blue-300 font-extrabold text-2xl mb-3">7</div>
               <h3 class="font-bold mb-2">API 통신 후 리렌더링</h3>
               <p class="text-sm text-gray-200 leading-relaxed">
-                이후에는 필요한 데이터만 API로 주고받고, 화면 일부만 다시 업데이트.
+                이후에는 필요한 데이터만 API로 주고받고, 화면 일부만 다시
+                업데이트.
               </p>
             </div>
           </div>
 
           <div class="mt-12 grid md:grid-cols-2 gap-6 text-left">
             <div class="info-card bg-white/95">
-              <h3 class="font-bold text-xl mb-3 text-gray-900">처음 접속할 때</h3>
+              <h3 class="font-bold text-xl mb-3 text-gray-900">
+                처음 접속할 때
+              </h3>
               <p class="text-gray-700 leading-relaxed">
-                브라우저는 페이지를 구성하는 재료인 HTML, CSS, JavaScript를 먼저 받는다.
-                <br>
+                브라우저는 페이지를 구성하는 재료인 HTML, CSS, JavaScript를 먼저
+                받는다.
+                <br />
                 즉 <strong>웹사이트 뼈대와 동작 도구를 내려받는 단계</strong>.
               </p>
             </div>
             <div class="info-card bg-white/95">
-              <h3 class="font-bold text-xl mb-3 text-gray-900">이후 상호작용할 때</h3>
+              <h3 class="font-bold text-xl mb-3 text-gray-900">
+                이후 상호작용할 때
+              </h3>
               <p class="text-gray-700 leading-relaxed">
-                모든 화면을 새로 받지 않고, 필요한 데이터만 API로 주고받으며 부분적으로 갱신.
-                <br>
+                모든 화면을 새로 받지 않고, 필요한 데이터만 API로 주고받으며
+                부분적으로 갱신.
+                <br />
                 우리가 방금 본 좋아요 버튼과 API테스트가 바로 이 흐름.
               </p>
             </div>
@@ -1220,9 +1511,13 @@
       <section id="html-css-js" class="slide bg-gray-50">
         <div class="slide-content w-full max-w-6xl px-4">
           <div class="text-center mb-8">
-            <span class="inline-block py-1 px-3 rounded-full bg-violet-100 text-violet-700 text-xs font-bold mb-4">4. HTML / CSS / JavaScript</span>
+            <span
+              class="inline-block py-1 px-3 rounded-full bg-violet-100 text-violet-700 text-xs font-bold mb-4"
+              >4. HTML / CSS / JavaScript</span
+            >
             <h2 class="text-3xl md:text-5xl font-bold mb-4">
-              셋은 함께 쓰이지만, <span class="text-violet-600">역할은 다르다</span>
+              셋은 함께 쓰이지만,
+              <span class="text-violet-600">역할은 다르다</span>
             </h2>
             <p class="text-gray-500 text-lg">
               이 부분은 VS Code를 통해 눈으로 직접 알아보자.
@@ -1230,13 +1525,22 @@
           </div>
 
           <div class="flex flex-wrap justify-center gap-3 mb-8">
-            <button class="stage-btn active px-5 py-2.5 rounded-full border border-gray-300 bg-white font-bold" data-stage="1">
+            <button
+              class="stage-btn active px-5 py-2.5 rounded-full border border-gray-300 bg-white font-bold"
+              data-stage="1"
+            >
               1단계 : HTML
             </button>
-            <button class="stage-btn px-5 py-2.5 rounded-full border border-gray-300 bg-white font-bold" data-stage="2">
+            <button
+              class="stage-btn px-5 py-2.5 rounded-full border border-gray-300 bg-white font-bold"
+              data-stage="2"
+            >
               2단계 : CSS 추가
             </button>
-            <button class="stage-btn px-5 py-2.5 rounded-full border border-gray-300 bg-white font-bold" data-stage="3">
+            <button
+              class="stage-btn px-5 py-2.5 rounded-full border border-gray-300 bg-white font-bold"
+              data-stage="3"
+            >
               3단계 : JS 추가
             </button>
           </div>
@@ -1269,7 +1573,10 @@
 
               <div class="info-card">
                 <h3 id="stage-title" class="font-bold text-xl mb-3"></h3>
-                <p id="stage-description" class="text-gray-700 leading-relaxed"></p>
+                <p
+                  id="stage-description"
+                  class="text-gray-700 leading-relaxed"
+                ></p>
               </div>
             </div>
 
@@ -1279,7 +1586,9 @@
                   <div class="browser-dot bg-red-400"></div>
                   <div class="browser-dot bg-yellow-400"></div>
                   <div class="browser-dot bg-green-400"></div>
-                  <div class="flex-1 bg-white rounded-md px-4 py-2 text-sm text-gray-500 shadow-inner">
+                  <div
+                    class="flex-1 bg-white rounded-md px-4 py-2 text-sm text-gray-500 shadow-inner"
+                  >
                     Preview
                   </div>
                 </div>
@@ -1296,7 +1605,8 @@
             <div class="info-card border-l-4 border-l-blue-500">
               <h3 class="font-bold text-lg mb-2">HTML</h3>
               <p class="text-gray-600 leading-relaxed">
-                화면의 구조와 의미를 만든다. 제목, 문단, 버튼, 이미지 같은 “뼈대”.
+                화면의 구조와 의미를 만든다. 제목, 문단, 버튼, 이미지 같은
+                “뼈대”.
               </p>
             </div>
             <div class="info-card border-l-4 border-l-pink-500">
@@ -1308,23 +1618,28 @@
             <div class="info-card border-l-4 border-l-yellow-500">
               <h3 class="font-bold text-lg mb-2">JavaScript</h3>
               <p class="text-gray-600 leading-relaxed">
-                클릭했을 때 바뀌는 동작, 데이터 처리, 화면 갱신 같은 “행동”을 담당.
+                클릭했을 때 바뀌는 동작, 데이터 처리, 화면 갱신 같은 “행동”을
+                담당.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      
       <section id="dom-bridge" class="slide bg-white">
         <div class="slide-content">
           <div class="text-center mb-10">
-            <span class="inline-block py-1 px-3 rounded-full bg-amber-100 text-amber-700 text-xs font-bold mb-4">5. JavaScript</span>
+            <span
+              class="inline-block py-1 px-3 rounded-full bg-amber-100 text-amber-700 text-xs font-bold mb-4"
+              >5. JavaScript</span
+            >
             <h2 class="text-3xl md:text-5xl font-bold mb-4">
-              왜 <span class="text-amber-600">JavaScript</span>를 특히 알아야 할까?
+              왜 <span class="text-amber-600">JavaScript</span>를 특히 알아야
+              할까?
             </h2>
             <p class="text-gray-500 text-lg">
-              HTML은 구조, CSS는 스타일, JavaScript는 동작을 담당. FE에서 화면을 실제로 움직이게 만드는 중심이 JavaScript.
+              HTML은 구조, CSS는 스타일, JavaScript는 동작을 담당. FE에서 화면을
+              실제로 움직이게 만드는 중심이 JavaScript.
             </p>
           </div>
 
@@ -1341,36 +1656,46 @@
                 색상, 간격, 배치처럼 <strong>보이는 방식</strong>을 꾸민다.
               </p>
             </div>
-            <div class="info-card border-l-4 border-l-yellow-500 bg-amber-50/60">
+            <div
+              class="info-card border-l-4 border-l-yellow-500 bg-amber-50/60"
+            >
               <h3 class="font-bold text-lg mb-2">JavaScript</h3>
               <p class="text-gray-700 leading-relaxed">
-                클릭, 입력, 변경, 요청, 화면 갱신 같은 <strong>실제 동작</strong>을 만든다.
+                클릭, 입력, 변경, 요청, 화면 갱신 같은
+                <strong>실제 동작</strong>을 만든다.
               </p>
             </div>
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8 text-left mb-10">
             <div class="info-card">
-              <h3 class="font-bold text-xl mb-4">왜 JavaScript가 특히 중요할까?</h3>
+              <h3 class="font-bold text-xl mb-4">
+                왜 JavaScript가 특히 중요할까?
+              </h3>
               <p class="text-gray-700 leading-relaxed mb-4">
                 HTML과 CSS만으로도 화면은 보일 수 있다.
-                <br>
-                하지만 사용자가 버튼을 누르고, 입력을 하고,
-                그 결과에 따라 내용이 바뀌는 순간부터는 <strong>JavaScript가 반드시 필요</strong>하다.
+                <br />
+                하지만 사용자가 버튼을 누르고, 입력을 하고, 그 결과에 따라
+                내용이 바뀌는 순간부터는
+                <strong>JavaScript가 반드시 필요</strong>하다.
               </p>
               <p class="text-gray-700 leading-relaxed">
-                즉 FE에서 사용자가 체감하는 “반응하는 화면”을 만드는 핵심이 JavaScript.
+                즉 FE에서 사용자가 체감하는 “반응하는 화면”을 만드는 핵심이
+                JavaScript.
               </p>
             </div>
 
             <div class="info-card bg-amber-50 border-amber-100">
               <h3 class="font-bold text-xl mb-4">JavaScript의 DOM</h3>
               <p class="text-gray-700 leading-relaxed mb-4">
-                브라우저는 HTML을 그냥 글자로 두지 않고, 내부적으로 <strong>구조화해서 이해</strong>한다.
+                브라우저는 HTML을 그냥 글자로 두지 않고, 내부적으로
+                <strong>구조화해서 이해</strong>한다.
               </p>
               <p class="text-gray-700 leading-relaxed">
-                그리고 JavaScript는 그 구조를 찾아서 내용을 바꾸고, 클래스를 바꾸고, 이벤트를 연결한다.
-                <strong>JavaScript가 화면 구조를 다루는 방식이 바로 DOM</strong>이다.
+                그리고 JavaScript는 그 구조를 찾아서 내용을 바꾸고, 클래스를
+                바꾸고, 이벤트를 연결한다.
+                <strong>JavaScript가 화면 구조를 다루는 방식이 바로 DOM</strong
+                >이다.
               </p>
             </div>
           </div>
@@ -1381,36 +1706,45 @@
                 <span>핵심</span>
                 <span class="text-amber-300">JavaScript → DOM</span>
               </div>
-              <pre class="code-body">HTML  → 화면의 구조
+              <pre class="code-body">
+HTML  → 화면의 구조
 CSS   → 화면의 스타일
 JS    → 화면의 동작
 
 그리고 JS는
 브라우저가 이해한 HTML 구조를
-DOM이라는 방식으로 다룬다.</pre>
+DOM이라는 방식으로 다룬다.</pre
+              >
             </div>
 
             <div class="info-card border-l-4 border-l-amber-500">
               <h3 class="font-bold text-xl mb-3">DOM을 알아보자</h3>
               <p class="text-gray-700 leading-relaxed">
                 “결국 FE가 JavaScript가 중요한 이유는 화면에 동작을 만들기 때문.
-                <br>
-                그리고 이 동작은 브라우저가 이해한 HTML 구조를 다루는 방식으로 이루어지는데,
-                이 구조를 JavaScript가 다루는 방법이 바로 DOM이다.”
+                <br />
+                그리고 이 동작은 브라우저가 이해한 HTML 구조를 다루는 방식으로
+                이루어지는데, 이 구조를 JavaScript가 다루는 방법이 바로
+                DOM이다.”
               </p>
             </div>
           </div>
         </div>
       </section>
 
-
       <section id="outro" class="slide bg-gray-50">
         <div class="slide-content">
-          <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-800 text-sm font-bold mb-4">Summary</span>
-          <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-gray-900">
+          <span
+            class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-800 text-sm font-bold mb-4"
+            >Summary</span
+          >
+          <h2
+            class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-gray-900"
+          >
             배운 것을 요약해보면?
           </h2>
-          <div class="grid md:grid-cols-2 gap-6 text-left max-w-5xl mx-auto mb-10">
+          <div
+            class="grid md:grid-cols-2 gap-6 text-left max-w-5xl mx-auto mb-10"
+          >
             <div class="info-card">
               <h3 class="font-bold text-xl mb-3">FE</h3>
               <p class="text-gray-700 leading-relaxed">
@@ -1428,15 +1762,15 @@ DOM이라는 방식으로 다룬다.</pre>
             <div class="info-card">
               <h3 class="font-bold text-xl mb-3">웹 개발 흐름</h3>
               <p class="text-gray-700 leading-relaxed">
-                URL 입력 → DNS 조회 → 서버 요청/응답 → HTML/CSS/JS 수신 → 렌더링 →
-                이후 API 통신으로 부분 업데이트가 이어진다.
+                URL 입력 → DNS 조회 → 서버 요청/응답 → HTML/CSS/JS 수신 → 렌더링
+                → 이후 API 통신으로 부분 업데이트가 이어진다.
               </p>
             </div>
             <div class="info-card">
               <h3 class="font-bold text-xl mb-3">HTML / CSS / JS / DOM</h3>
               <p class="text-gray-700 leading-relaxed">
-                HTML은 구조, CSS는 스타일, JavaScript는 동작이고,
-                DOM은 JavaScript가 화면 구조를 다루기 위한 브라우저의 표현이다.
+                HTML은 구조, CSS는 스타일, JavaScript는 동작이고, DOM은
+                JavaScript가 화면 구조를 다루기 위한 브라우저의 표현이다.
               </p>
             </div>
           </div>
@@ -1450,6 +1784,7 @@ DOM이라는 방식으로 다룬다.</pre>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const sections = document.querySelectorAll("section");
+        window.lucide?.createIcons();
         const navLinks = document.querySelectorAll(".nav-link");
 
         const observer = new IntersectionObserver(
@@ -1458,14 +1793,16 @@ DOM이라는 방식으로 다룬다.</pre>
               if (entry.isIntersecting) {
                 navLinks.forEach((link) => {
                   link.classList.remove("active");
-                  if (link.getAttribute("href").substring(1) === entry.target.id) {
+                  if (
+                    link.getAttribute("href").substring(1) === entry.target.id
+                  ) {
                     link.classList.add("active");
                   }
                 });
               }
             });
           },
-          { rootMargin: "-50% 0px -50% 0px" }
+          { rootMargin: "-50% 0px -50% 0px" },
         );
 
         sections.forEach((section) => observer.observe(section));
@@ -1606,14 +1943,17 @@ DOM이라는 방식으로 다룬다.</pre>
                   <div class="dot"></div>
                   <div>${line.text}</div>
                 </div>
-              `
+              `,
             )
             .join("");
         }
 
         function activateRoleStep(stepNumber) {
           processSteps.forEach((step) => {
-            step.classList.toggle("active", Number(step.dataset.step) === stepNumber);
+            step.classList.toggle(
+              "active",
+              Number(step.dataset.step) === stepNumber,
+            );
           });
         }
 
@@ -1621,8 +1961,14 @@ DOM이라는 방식으로 다룬다.</pre>
           const laneWidth = networkLane?.clientWidth ?? 0;
           if (!laneWidth) return;
 
-          const requestTravel = Math.max(0, laneWidth - requestPacket.offsetWidth - 36);
-          const responseTravel = Math.max(0, laneWidth - responsePacket.offsetWidth - 36);
+          const requestTravel = Math.max(
+            0,
+            laneWidth - requestPacket.offsetWidth - 36,
+          );
+          const responseTravel = Math.max(
+            0,
+            laneWidth - responsePacket.offsetWidth - 36,
+          );
 
           requestPacket.style.setProperty("--travel-x", `${requestTravel}px`);
           responsePacket.style.setProperty("--travel-x", `${responseTravel}px`);
@@ -1639,14 +1985,16 @@ DOM이라는 방식으로 다룬다.</pre>
           animating = false;
           liked = false;
           likeBtn.classList.remove("liked");
-          likeBtn.textContent = "♡";
           likeCount.textContent = "좋아요 120개";
           visualState.textContent = "대기 중";
           bigHeart.classList.remove("show");
           processSteps.forEach((step) => step.classList.remove("active"));
           resetPackets();
           setRoleLog([
-            { type: "fe", text: "대기 중입니다. 하트 버튼을 누르면 단계가 순서대로 진행됩니다." },
+            {
+              type: "fe",
+              text: "대기 중입니다. 하트 버튼을 누르면 단계가 순서대로 진행됩니다.",
+            },
           ]);
         }
 
@@ -1675,7 +2023,10 @@ DOM이라는 방식으로 다룬다.</pre>
             requestPacket.classList.add("move-right");
             setRoleLog([
               { type: "fe", text: "1) FE가 클릭 이벤트를 감지했습니다." },
-              { type: "fe", text: "2) FE가 POST /like 요청을 준비해 서버로 보냅니다." },
+              {
+                type: "fe",
+                text: "2) FE가 POST /like 요청을 준비해 서버로 보냅니다.",
+              },
             ]);
           });
 
@@ -1684,8 +2035,14 @@ DOM이라는 방식으로 다룬다.</pre>
             visualState.textContent = "백엔드 처리 중";
             setRoleLog([
               { type: "fe", text: "1) FE가 클릭 이벤트를 감지했습니다." },
-              { type: "fe", text: "2) FE가 POST /like 요청을 서버로 보냈습니다." },
-              { type: "be", text: "3) 백엔드가 사용자/게시물 정보를 확인하고 DB에 좋아요를 반영합니다." },
+              {
+                type: "fe",
+                text: "2) FE가 POST /like 요청을 서버로 보냈습니다.",
+              },
+              {
+                type: "be",
+                text: "3) 백엔드가 사용자/게시물 정보를 확인하고 DB에 좋아요를 반영합니다.",
+              },
             ]);
           });
 
@@ -1695,9 +2052,15 @@ DOM이라는 방식으로 다룬다.</pre>
             responsePacket.classList.add("move-left");
             setRoleLog([
               { type: "fe", text: "1) FE가 클릭 이벤트를 감지했습니다." },
-              { type: "fe", text: "2) FE가 POST /like 요청을 서버로 보냈습니다." },
+              {
+                type: "fe",
+                text: "2) FE가 POST /like 요청을 서버로 보냈습니다.",
+              },
               { type: "be", text: "3) 백엔드가 DB 반영을 끝냈습니다." },
-              { type: "be", text: "4) 백엔드가 liked=true, likeCount=121 응답을 생성합니다." },
+              {
+                type: "be",
+                text: "4) 백엔드가 liked=true, likeCount=121 응답을 생성합니다.",
+              },
             ]);
           });
 
@@ -1705,7 +2068,6 @@ DOM이라는 방식으로 다룬다.</pre>
             activateRoleStep(5);
             liked = true;
             likeBtn.classList.add("liked");
-            likeBtn.textContent = "♥";
             likeCount.textContent = "좋아요 121개";
             bigHeart.classList.remove("show");
             void bigHeart.offsetWidth;
@@ -1716,7 +2078,10 @@ DOM이라는 방식으로 다룬다.</pre>
               { type: "fe", text: "2) FE가 서버로 요청을 보냈습니다." },
               { type: "be", text: "3) 백엔드가 DB에 반영했습니다." },
               { type: "be", text: "4) 백엔드가 성공 응답을 보냈습니다." },
-              { type: "ok", text: "5) FE가 응답을 받아 하트 색과 좋아요 수를 화면에 반영했습니다." },
+              {
+                type: "ok",
+                text: "5) FE가 응답을 받아 하트 색과 좋아요 수를 화면에 반영했습니다.",
+              },
             ]);
           });
 
@@ -1738,8 +2103,12 @@ DOM이라는 방식으로 다룬다.</pre>
         const apiCodeBox = document.getElementById("api-code-box");
         const apiUrlBar = document.getElementById("api-url-bar");
         const apiStatus = document.getElementById("api-status");
-        const requestMethodChip = document.getElementById("request-method-chip");
-        const responseMethodChip = document.getElementById("response-method-chip");
+        const requestMethodChip = document.getElementById(
+          "request-method-chip",
+        );
+        const responseMethodChip = document.getElementById(
+          "response-method-chip",
+        );
         const apiSteps = document.querySelectorAll(".api-step");
 
         function setApiStatus(mode, text) {
@@ -1749,7 +2118,10 @@ DOM이라는 방식으로 다룬다.</pre>
 
         function setApiStep(stepNumber) {
           apiSteps.forEach((step) => {
-            step.classList.toggle("active", Number(step.dataset.apiStep) <= stepNumber);
+            step.classList.toggle(
+              "active",
+              Number(step.dataset.apiStep) <= stepNumber,
+            );
           });
         }
 
@@ -1836,7 +2208,7 @@ DOM이라는 방식으로 다룬다.</pre>
                 data,
               },
               null,
-              2
+              2,
             );
           } catch (error) {
             setApiStatus("error", "오류 발생");
@@ -1846,7 +2218,7 @@ DOM이라는 방식으로 다룬다.</pre>
                 detail: error.message,
               },
               null,
-              2
+              2,
             );
           }
         }
