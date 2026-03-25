@@ -321,7 +321,7 @@
                           <h3 class="font-bold">응답 생성</h3>
                         </div>
                         <p class="text-sm text-gray-600 leading-relaxed">
-                          백엔드는 성공 여부와 최신 좋아요 응답 데이터로 만들어
+                          BE는 성공 여부와 최신 좋아요 응답 데이터로 만들어
                           돌려줌.
                         </p>
                       </div>
@@ -346,7 +346,7 @@
                 </div>
                 <div class="network-lane mb-4">
                   <div class="lane-label left">사용자 / 브라우저</div>
-                  <div class="lane-label right">백엔드 / DB</div>
+                  <div class="lane-label right">BE / DB</div>
                   <div class="lane-line"></div>
                   <div class="packet request" id="request-packet">
                     요청: POST /like
@@ -382,7 +382,7 @@
             >
               <h3 class="font-bold text-xl mb-3">BE가 하는 일</h3>
               <p class="text-gray-700 leading-relaxed">
-                DB 반영, 권한 확인, 실제 데이터 저장 등은 백엔드의 역할.
+                DB 반영, 권한 확인, 실제 데이터 저장 등은 BE의 역할.
               </p>
             </div>
           </div>
@@ -393,7 +393,7 @@
           <div class="text-center mb-10">
             <span
               class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold mb-4"
-              >2. 백엔드와의 통신은 어떻게?</span
+              >2. BE와의 통신은 어떻게?</span
             >
             <h2 class="text-3xl md:text-5xl font-bold mb-4">
               FE와 BE는 <span class="text-emerald-600">API</span>로 대화한다
@@ -575,8 +575,8 @@ axios.get("https://jsonplaceholder.typicode.com/posts/1")
           >
             <h3 class="font-bold text-xl mb-3">한줄 요약</h3>
             <p class="text-gray-700 leading-relaxed">
-              API는 “프론트엔드가 백엔드 기능을 사용하기 위한 약속된 문”. FE는
-              API에 요청을 보내고, BE는 처리 결과를 JSON 등으로 응답.
+              API는 “FE가 BE 기능을 사용하기 위한 약속된 문”. FE는 API에 요청을
+              보내고, BE는 처리 결과를 JSON 등으로 응답.
             </p>
           </div>
         </div>
