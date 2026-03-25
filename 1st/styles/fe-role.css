@@ -63,8 +63,11 @@
   width: 100%;
   height: 100%;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #fde68a, #fbcfe8, #bfdbfe);
   border: 2px solid #fff;
+  background-image: url("../assets/photoimg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .insta-photo {
@@ -72,41 +75,10 @@
   height: 280px;
   border-radius: 1rem;
   overflow: hidden;
-  background:
-    radial-gradient(
-      circle at 25% 25%,
-      rgba(255, 255, 255, 0.75),
-      transparent 18%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(255, 255, 255, 0.35),
-      transparent 16%
-    ),
-    linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 40%, #f9a8d4 100%);
-}
-
-.insta-photo::before {
-  content: "";
-  position: absolute;
-  inset: auto 12% 22% auto;
-  width: 120px;
-  height: 120px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.22);
-  filter: blur(2px);
-}
-
-.insta-photo::after {
-  content: "";
-  position: absolute;
-  left: 10%;
-  bottom: 12%;
-  width: 150px;
-  height: 90px;
-  border-radius: 9999px 9999px 0 9999px;
-  background: rgba(255, 255, 255, 0.28);
-  transform: rotate(-10deg);
+  background-image: url("../assets/photoimg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .big-heart {
