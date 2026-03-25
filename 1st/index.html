@@ -546,7 +546,11 @@
                     <pre class="code-body" id="api-code-box">
 fetch("https://jsonplaceholder.typicode.com/posts/1")
   .then((response) =&gt; response.json())
-  .then((data) =&gt; console.log(data));</pre
+  .then((data) =&gt; console.log("fetch 결과:", data));
+
+axios.get("https://jsonplaceholder.typicode.com/posts/1")
+  .then((response) =&gt; console.log("axios 결과:", response.data));
+</pre
                     >
                   </div>
                   <div class="info-card bg-emerald-50 border-emerald-100">
