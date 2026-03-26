@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FrontEnd 교육세션</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+
+    <link href="1st/styles/reset.css" rel="stylesheet" />
+    <link href="1st/styles/layout.css" rel="stylesheet" />
+    <link href="styles/start.css" rel="stylesheet" />
+  </head>
+
+  <body class="w-full">
+    <main>
+      <section class="start-hero bg-white">
+        <div class="slide-content mx-auto px-4">
+          <div class="flex flex-col items-center text-center">
+            <span class="summary-chip mb-4">FrontEnd 교육세션</span>
+            <h1
+              class="start-title text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-gray-900"
+            >
+              원하는
+              <span class="text-blue-600">교육자료</span>를 클릭하세요
+            </h1>
+            <p class="text-xl text-gray-500 mb-10 font-medium">
+              Made by 컴퓨터학부 김지훈
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <a
+              class="card-link info-card start-card border-l-4 border-l-blue-500 hover:shadow-lg transition"
+              href="./1st/index.html"
+              aria-label="1st 세션으로 이동"
+            >
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <span
+                    class="summary-chip bg-blue-100 text-blue-800 border-blue-200"
+                    >1st Session</span
+                  >
+                  <h2 class="text-2xl font-bold mt-3 text-gray-900">
+                    웹 개발에 대한 이해
+                  </h2>
+                  <p class="text-gray-600 leading-relaxed mt-2">
+                    브라우저 클릭부터 흐름까지, “어떻게 일어나는지”를 같이
+                    따라가요.
+                  </p>
+                </div>
+
+                <div class="start-icon-badge bg-blue-50 text-blue-700">
+                  <i data-lucide="rocket" class="w-7 h-7"></i>
+                </div>
+              </div>
+
+              <div class="start-footer flex items-center justify-between">
+                <div class="start-cta text-blue-700">
+                  바로가기
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </a>
+
+            <a
+              class="card-link info-card start-card border-l-4 border-l-emerald-500 hover:shadow-lg transition"
+              href="./gitgithub/index.html"
+              aria-label="Git GitHub 특강으로 이동"
+            >
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <span
+                    class="summary-chip bg-emerald-100 text-emerald-800 border-emerald-200"
+                    >Git &amp; GitHub 특강</span
+                  >
+                  <h2 class="text-2xl font-bold mt-3 text-gray-900">
+                    Git과 Github로 협업 시작하기
+                  </h2>
+                  <p class="text-gray-600 leading-relaxed mt-2">
+                    GitHub에 코드를 올리는 흐름을 실습 중심으로 알아봐요.
+                  </p>
+                </div>
+
+                <div class="start-icon-badge bg-emerald-50 text-emerald-700">
+                  <i data-lucide="git-branch" class="w-7 h-7"></i>
+                </div>
+              </div>
+
+              <div class="start-footer flex items-center justify-between">
+                <div class="start-cta text-emerald-700">
+                  바로가기
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-10">
+        <div class="slide-content mx-auto px-4 text-center">
+          <div class="info-card inline-block text-left max-w-2xl w-full">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">
+              만든 이의 한마디
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              지속적으로 추가 예정이니 많은 관심 부탁드려요.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./scripts/start.js"></script>
+  </body>
+</html>

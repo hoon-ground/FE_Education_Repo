@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="ko" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git · GitHub 특강</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+
+    <link href="styles/reset.css" rel="stylesheet" />
+    <link href="styles/layout.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header
+      class="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md"
+    >
+      <nav class="max-w-7xl mx-auto px-4">
+        <ul
+          class="h-16 flex items-center justify-center gap-3 md:gap-6 text-xs md:text-sm font-medium text-slate-500 overflow-x-auto whitespace-nowrap"
+        >
+          <li>
+            <a class="nav-link hover:text-blue-600 transition" href="#intro"
+              >시작</a
+            >
+          </li>
+          <li>
+            <a class="nav-link hover:text-blue-600 transition" href="#why"
+              >왜 쓰나</a
+            >
+          </li>
+          <li>
+            <a class="nav-link hover:text-blue-600 transition" href="#setup"
+              >준비</a
+            >
+          </li>
+          <li>
+            <a class="nav-link hover:text-blue-600 transition" href="#clone"
+              >clone</a
+            >
+          </li>
+          <li>
+            <a class="nav-link hover:text-blue-600 transition" href="#workflow"
+              >기본 흐름</a
+            >
+          </li>
+          <li>
+            <a class="nav-link hover:text-blue-600 transition" href="#vscode"
+              >VS Code</a
+            >
+          </li>
+          <li>
+            <a class="nav-link hover:text-blue-600 transition" href="#branch"
+              >브랜치·PR</a
+            >
+          </li>
+          <li>
+            <a class="nav-link hover:text-blue-600 transition" href="#practice"
+              >실습</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="intro">
+        <div class="section-shell">
+          <div class="hero-card p-8 md:p-12">
+            <span class="kicker mb-5">Git & GitHub 특강</span>
+            <h1
+              class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-6"
+            >
+              <span class="text-blue-600">직접 해보는 </span>Git & GitHub
+            </h1>
+            <p class="text-lg md:text-2xl text-slate-600 leading-relaxed mb-8">
+              오늘의 목표<br class="hidden md:block" />
+              <strong>깃허브에 clone → add → commit → pull → push</strong>를
+              직접 해서 코드를 올릴 수 있도록 하자.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="panel p-6">
+                <h2 class="text-2xl font-bold mb-4">오늘 할 것</h2>
+                <div class="space-y-3 text-slate-700 leading-relaxed">
+                  <p>1. Git, GitHub 알기</p>
+                  <p>2. 저장소 clone 하기</p>
+                  <p>3. 파일 수정 후 commit 하기</p>
+                  <p>4. GitHub에 push 하기</p>
+                  <p>5. branch와 PR 맛보기</p>
+                </div>
+              </div>
+              <div class="panel p-6 bg-slate-50">
+                <h2 class="text-2xl font-bold mb-4">한 줄 정리</h2>
+                <div class="space-y-3 text-slate-700 leading-relaxed">
+                  <p><strong>Git</strong> = 버전 관리 도구</p>
+                  <p>
+                    <strong>GitHub</strong> = Git 저장소를 올려두는 온라인 공간
+                  </p>
+                  <p>
+                    즉, <span class="mini-code">컴퓨터(로컬)에서 Git</span>을
+                    이용해 코드를 관리하고
+                    <span class="mini-code">온라인(GitHub)</span> 올린다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="why">
+        <div class="section-shell pt-0">
+          <div class="panel p-8 md:p-10">
+            <span class="kicker mb-4">1. 왜 쓰나</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
+              팀플에서 어떤 파일이 최종 파일인지 헷갈린 적 없으신가요?
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+              <div class="warn p-6">
+                <h3 class="text-xl font-bold mb-3">Git을 사용하지 않을 때</h3>
+                <div class="space-y-3 leading-relaxed">
+                  <p>최종.ppt</p>
+                  <p>최종_진짜최종.ppt</p>
+                  <p>최종_진짜최종_수정.ppt</p>
+                  <p>-> 누가 뭘 바꿨는지 모름</p>
+                </div>
+              </div>
+              <div class="ok p-6">
+                <h3 class="text-xl font-bold mb-3">Git을 사용할 때</h3>
+                <div class="space-y-3 leading-relaxed">
+                  <p>변경 이력이 남음</p>
+                  <p>이전 상태로 돌아갈 수 있음</p>
+                  <p>협업 흐름을 만들 수 있음</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5 text-slate-700">
+              <div class="sub-panel p-5">
+                <strong>기록</strong>
+                <p class="mt-2 text-slate-600">언제 무엇을 바꿨는지 남긴다.</p>
+              </div>
+              <div class="sub-panel p-5">
+                <strong>복구</strong>
+                <p class="mt-2 text-slate-600">실수해도 되돌릴 수 있다.</p>
+              </div>
+              <div class="sub-panel p-5">
+                <strong>협업</strong>
+                <p class="mt-2 text-slate-600">각자 작업하고 합칠 수 있다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="setup">
+        <div class="section-shell pt-0">
+          <div class="panel p-8 md:p-10">
+            <span class="kicker mb-4">2. 준비</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
+              사전에 필요한 것들
+            </h2>
+            <div class="grid md:grid-cols-3 gap-5 mb-6">
+              <div class="sub-panel p-5">
+                <h3 class="font-bold text-lg mb-2">Git 설치</h3>
+                <p class="text-slate-600">버전 관리 도구</p>
+              </div>
+              <div class="sub-panel p-5">
+                <h3 class="font-bold text-lg mb-2">VS Code 설치</h3>
+                <p class="text-slate-600">파일 수정용(코드 작성용)</p>
+              </div>
+              <div class="sub-panel p-5">
+                <h3 class="font-bold text-lg mb-2">GitHub 로그인</h3>
+                <p class="text-slate-600">원격 저장소 사용</p>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="sub-panel p-6">
+                <h3 class="text-xl font-bold mb-3">Git Bash는?</h3>
+                <p class="text-slate-600 leading-relaxed">
+                  명령어를 입력하는 창(터미널)이다.
+                  <br />시스템 프로그래밍에서 배우는 리눅스 터미널을 떠올려보자.
+                </p>
+              </div>
+              <div class="sub-panel p-6">
+                <h3 class="text-xl font-bold mb-3">처음 한 번 설정</h3>
+                <div class="command-box text-sm">
+                  git config --global user.name "내 이름"<br />
+                  git config --global user.email "내 이메일"
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="clone">
+        <div class="section-shell pt-0">
+          <div class="panel p-8 md:p-10">
+            <span class="kicker mb-4">3. 시작하기</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
+              Github 저장소의 파일을 내 컴퓨터에 옮겨보자 :
+              <span class="text-blue-600">git clone</span>부터
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+              <div class="sub-panel p-6">
+                <h3 class="text-xl font-bold mb-3">git clone</h3>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                  GitHub에 있는 저장소를 내 컴퓨터로 가져온다.
+                </p>
+                <div class="command-box text-sm">
+                  git clone 저장소주소
+                  <br />
+                  ex) git clone
+                  https://github.com/LikeLion-KNU/FE_likelion_Study_team1_14th.git
+                </div>
+              </div>
+              <div class="sub-panel p-6">
+                <h3 class="text-xl font-bold mb-3">git init</h3>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                  아무것도 없는 로컬 폴더를 Git 저장소로 시작할 때 쓴다.
+                </p>
+                <div class="command-box text-sm">git init</div>
+              </div>
+            </div>
+
+            <div class="warn p-6">
+              <h3 class="text-xl font-bold mb-3">+ TIP</h3>
+              <p class="leading-relaxed">
+                <strong>git clone 저장소주소 저장소이름</strong>
+                <br />
+                에서 <strong>저장소이름을 지정하지 않으면</strong> Github의
+                저장소 이름으로 자동생성된다.
+              </p>
+              <p class="leading-relaxed mt-2">
+                <strong>git init</strong>을 이용할 경우 기본 브랜치가
+                <strong>master</strong>인 경우가 있다. 이는 과거의 잔재로 현재는
+                <strong>main</strong> 브랜치가 기본 브랜치이다.
+                <br />
+                추가로 <strong>git init</strong>을 하면 따로 Github 저장소와
+                연결해야하므로 번거롭다. 따라서 <strong>git clone</strong>이
+                선호된다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow">
+        <div class="section-shell pt-0">
+          <div class="panel p-8 md:p-10">
+            <span class="kicker mb-4">4. 코드를 작성하고 올리는 흐름</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-8">
+              오늘 가장 중요한 흐름
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-5 mb-8">
+              <div class="flow-step" data-step="1">
+                <h3 class="text-xl font-bold mb-2">clone</h3>
+                <p class="text-slate-600">저장소를 내 컴퓨터로 가져온다.</p>
+              </div>
+              <div class="flow-step" data-step="2">
+                <h3 class="text-xl font-bold mb-2">status</h3>
+                <p class="text-slate-600">무엇이 바뀌었는지 확인한다.</p>
+              </div>
+              <div class="flow-step" data-step="3">
+                <h3 class="text-xl font-bold mb-2">add</h3>
+                <p class="text-slate-600">커밋할 파일을 올린다.</p>
+              </div>
+              <div class="flow-step" data-step="4">
+                <h3 class="text-xl font-bold mb-2">commit</h3>
+                <p class="text-slate-600">변경 기록을 남긴다.</p>
+              </div>
+              <div class="flow-step" data-step="5">
+                <h3 class="text-xl font-bold mb-2">pull</h3>
+                <p class="text-slate-600">
+                  원격 저장소 최신 내용을 먼저 받는다.
+                </p>
+              </div>
+              <div class="flow-step" data-step="6">
+                <h3 class="text-xl font-bold mb-2">push</h3>
+                <p class="text-slate-600">내 기록을 GitHub에 올린다.</p>
+              </div>
+            </div>
+
+            <div class="command-box text-sm md:text-base">
+              git clone 저장소주소<br />
+              cd 저장소이름<br />
+              git status<br />
+              git add .<br />
+              git commit -m "기능 추가"<br />
+              git pull origin main<br />
+              git push origin main
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5 mt-6 text-slate-700">
+              <div class="sub-panel p-5">
+                <strong>git status</strong>
+                <p class="mt-2 text-slate-600">지금 상태 확인</p>
+              </div>
+              <div class="sub-panel p-5">
+                <strong>git add .</strong>
+                <p class="mt-2 text-slate-600">변경 파일 올리기</p>
+              </div>
+              <div class="sub-panel p-5">
+                <strong>git commit -m</strong>
+                <p class="mt-2 text-slate-600">의미 있는 기록 남기기</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="vscode">
+        <div class="section-shell pt-0">
+          <div class="panel p-8 md:p-10">
+            <span class="kicker mb-4">5. VS Code</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
+              VS Code로도 add commit push가 가능하다.
+            </h2>
+            <div class="grid grid-cols-1 gap-6">
+              <div class="sub-panel p-6">
+                <h3 class="text-xl font-bold mb-3">왼쪽 세 번째 아이콘</h3>
+
+                <div class="grid grid-cols-1 gap-4 mb-4">
+                  <div
+                    class="rounded-2xl border border-slate-200 bg-slate-50 p-3"
+                  >
+                    <img
+                      src="assets/img1.png"
+                      alt="VS Code Source Control 화면 1"
+                      class="w-full h-80 md:h-96 object-contain"
+                    />
+                  </div>
+
+                  <div
+                    class="rounded-2xl border border-slate-200 bg-slate-50 p-3"
+                  >
+                    <img
+                      src="assets/img2.png"
+                      alt="VS Code Source Control 화면 2"
+                      class="w-full h-80 md:h-96 object-contain"
+                    />
+                  </div>
+
+                  <div
+                    class="rounded-2xl border border-slate-200 bg-slate-50 p-3"
+                  >
+                    <img
+                      src="assets/img3.png"
+                      alt="VS Code Source Control 화면 3"
+                      class="w-full h-80 md:h-96 object-contain"
+                    />
+                  </div>
+                </div>
+
+                <p class="text-slate-600 leading-relaxed">
+                  VS COde의 세번째 아이콘 Source Control에서 변경 파일 확인,
+                  스테이징, 커밋, 푸시까지 할 수 있다.
+                </p>
+              </div>
+
+              <div class="sub-panel p-6 bg-slate-50">
+                <h3 class="text-xl font-bold mb-3">하지만</h3>
+                <p
+                  class="text-slate-600 leading-relaxed whitespace-normal md:whitespace-nowrap"
+                >
+                  <strong>status / pull / push</strong> 정도는 터미널에서도 한
+                  번 해보는 게 좋다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="branch">
+        <div class="section-shell pt-0">
+          <div class="panel p-8 md:p-10">
+            <span class="kicker mb-4">6. 브랜치, PR</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-8">
+              협업할 때는 main에 바로 작업하지 않는 습관이 좋다.
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-5 mb-6">
+              <div class="flow-step" data-step="1">
+                <h3 class="text-xl font-bold mb-2">브랜치 생성</h3>
+                <p class="text-slate-600">내 작업용 공간을 만든다.</p>
+              </div>
+              <div class="flow-step" data-step="2">
+                <h3 class="text-xl font-bold mb-2">작업 후 push</h3>
+                <p class="text-slate-600">내 브랜치를 GitHub에 올린다.</p>
+              </div>
+              <div class="flow-step" data-step="3">
+                <h3 class="text-xl font-bold mb-2">PR 생성</h3>
+                <p class="text-slate-600">합치기 전에 리뷰를 받는다.</p>
+              </div>
+            </div>
+
+            <div class="command-box text-sm md:text-base mb-6">
+              git checkout -b kimjihoon_0401<br />
+              git add 파일명<br />
+              git commit -m "김지훈_0401 멋사 1주차 과제"<br />
+              git push origin kimjihoon_0401
+            </div>
+
+            <div class="ok p-6">
+              <h3 class="text-xl font-bold mb-3">+ TIP</h3>
+              <p class="leading-relaxed">
+                개인 과제는 <strong>main</strong>으로 해도 되지만, 팀 프로젝트는
+                <strong>feature 브랜치 → PR → merge</strong> 흐름을 추천.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="practice">
+        <div class="section-shell pt-0">
+          <div class="panel p-8 md:p-10">
+            <span class="kicker mb-4">7. 실습</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-8">
+              1주차 과제 제출하기
+            </h2>
+
+            <div class="grid lg:grid-cols-2 gap-6">
+              <div class="sub-panel p-6">
+                <h3 class="text-xl font-bold mb-4">실습 순서</h3>
+                <div class="space-y-3 text-slate-700 leading-relaxed">
+                  <p>1. GitHub에서 저장소 만들기</p>
+                  <p>2. 저장소 주소 복사</p>
+                  <p>3. Git Bash에서 clone</p>
+                  <p>4. VS Code로 열고 파일 수정</p>
+                  <p>5. add → commit → pull → push</p>
+                </div>
+              </div>
+              <div class="sub-panel p-6">
+                <h3 class="text-xl font-bold mb-4">따라칠 명령어</h3>
+                <div class="command-box text-sm">
+                  git clone
+                  https://github.com/LikeLion-KNU/FE_likelion_Study_team1_14th.git<br />
+                  cd FE_likelion_Study_team1_14th<br />
+                  git checkout -b kimjihoon_0401
+                  <br />
+                  <br />
+                  [코드 작성 후]<br />
+                  <br />
+                  git add 파일명<br />
+                  git commit -m "김지훈_0401 멋사 1주차 과제"<br />
+                  git push origin kimjihoon_0401
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 warn p-6">
+              <h3 class="text-xl font-bold mb-3">마지막으로</h3>
+              <p class="leading-relaxed">
+                merge, rebase, 등 다양한 커맨드가 있다. 상황에 따른 명령어를
+                전부 외울순 없기에,
+                <strong
+                  >AI에게 상황을 설명하면 적절한 커맨드를 줄것이다.</strong
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./scripts/main.js"></script>
+  </body>
+</html>
